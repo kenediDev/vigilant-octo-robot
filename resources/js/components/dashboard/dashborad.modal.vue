@@ -130,6 +130,7 @@ export default class DashboardModal extends Vue {
         this.album();
         break;
       case "service":
+        this.service();
         break;
       case "vision":
         break;
@@ -151,6 +152,36 @@ export default class DashboardModal extends Vue {
     } else {
       this.$store
         .dispatch("createAlbum", data)
+        .then((res: AxiosResponse<any>) => {
+          this.clearInput();
+          this.clickAdd();
+          this.$store.commit("MESSAGE", {
+            message: res.data.message,
+            valid: 1,
+          });
+        })
+        .catch((err) => {
+          if (err.response.data === false) {
+            localStorage.clear();
+            window.location.reload();
+          }
+          this.$store.commit("MESSAGE", {
+            message: err.response.data.message,
+            valid: 2,
+          });
+        });
+    }
+  }
+
+  service() {
+    const data = new FormData();
+    data.append("name", this.title);
+    data.append("description", this.description);
+    data.append("image", this.photo);
+    if (this.id) {
+    } else {
+      this.$store
+        .dispatch("createService", data)
         .then((res: AxiosResponse<any>) => {
           this.clearInput();
           this.clickAdd();

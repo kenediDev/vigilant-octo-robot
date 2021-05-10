@@ -48,7 +48,7 @@ export default class Message extends Vue {}
 }
 
 .nc-message {
-  background-color: greenyellow;
+  background-color: green;
   animation: message 2s forwards;
 }
 

@@ -22,10 +22,16 @@ class ServiceController extends Controller
         if ($val->fails()) {
             return response()->json($val->errors(), 400);
         }
+        $photo = null;
+        if ($request->hasFile("image")) {
+            $photo = Storage::disk("upload_public")->put("image/service", $request->file("image"));
+        } else {
+            $photo = $request->image;
+        }
         $create = Service::create([
             'name' => $request->name,
             'description' => $request->description,
-            'image' => Storage::disk("upload_public")->put("image/service", $request->file("image")),
+            'image' => $photo,
             'user_id' => auth()->user()->id
         ]);
         $create->save();

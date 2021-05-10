@@ -2714,6 +2714,7 @@ var DashboardModal = /*#__PURE__*/function (_vue_1$default) {
           break;
 
         case "service":
+          this.service();
           break;
 
         case "vision":
@@ -2754,6 +2755,39 @@ var DashboardModal = /*#__PURE__*/function (_vue_1$default) {
           }
 
           _this.$store.commit("MESSAGE", {
+            message: err.response.data.message,
+            valid: 2
+          });
+        });
+      }
+    }
+  }, {
+    key: "service",
+    value: function service() {
+      var _this2 = this;
+
+      var data = new FormData();
+      data.append("name", this.title);
+      data.append("description", this.description);
+      data.append("image", this.photo);
+
+      if (this.id) {} else {
+        this.$store.dispatch("createService", data).then(function (res) {
+          _this2.clearInput();
+
+          _this2.clickAdd();
+
+          _this2.$store.commit("MESSAGE", {
+            message: res.data.message,
+            valid: 1
+          });
+        })["catch"](function (err) {
+          if (err.response.data === false) {
+            localStorage.clear();
+            window.location.reload();
+          }
+
+          _this2.$store.commit("MESSAGE", {
             message: err.response.data.message,
             valid: 2
           });
@@ -3359,20 +3393,221 @@ exports.default = {
 /*!*******************************************************!*\
   !*** ./resources/js/store/modules/service.modules.ts ***!
   \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
 
+var _regeneratorRuntime = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+
+var _asyncToGenerator = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js").default;
+
 __webpack_require__(/*! core-js/modules/es.object.define-property.js */ "./node_modules/core-js/modules/es.object.define-property.js");
+
+__webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+
+__webpack_require__(/*! core-js/modules/es.array.map.js */ "./node_modules/core-js/modules/es.array.map.js");
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-var state = {};
-var actions = {};
-var mutations = {};
-var getters = {};
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+var cors_1 = __webpack_require__(/*! ../prefix/cors */ "./resources/js/store/prefix/cors.ts");
+
+var state = {
+  service: [],
+  data: {
+    id: 0,
+    name: "",
+    description: "",
+    image: ""
+  }
+};
+var actions = {
+  createService: function createService(_ref, args) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.next = 3;
+              return axios_1["default"].post("/api/v1/service", args, {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Methods": "POST",
+                  "Access-Control-Allow-origin": cors_1.origin,
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
+                  Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: true,
+                maxRedirects: 5,
+                maxContentLength: 2000,
+                maxBodyLength: 2000,
+                validateStatus: function validateStatus(status) {
+                  return status >= 201 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context.abrupt("return", _context.sent);
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  listService: function listService(_ref2) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.next = 3;
+              return axios_1["default"].get("/api/v1/service", {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With",
+                  "Access-Control-Allow-origin": cors_1.origin
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: false,
+                maxBodyLength: 2000,
+                maxContentLength: 2000,
+                maxRedirects: 5,
+                validateStatus: function validateStatus(status) {
+                  return status >= 200 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  putService: function putService(_ref3, args) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.next = 3;
+              return axios_1["default"].post("/api/v1/service/".concat(args.id, "/"), args.data, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  "Access-Control-Allow-Methods": "POST",
+                  "Access-Control-Allow-Origin": cors_1.origin,
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Reuqested-With, Authorzation",
+                  Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: true,
+                maxRedirects: 5,
+                maxContentLength: 2000,
+                maxBodyLength: 2000,
+                validateStatus: function validateStatus(status) {
+                  return status >= 200 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context3.abrupt("return", _context3.sent);
+
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  },
+  deleteDestroy: function deleteDestroy(_ref4, args) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref4.commit;
+              _context4.next = 3;
+              return axios_1["default"]["delete"]("/api/v1/service/".concat(args), {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Methods": "DELETE",
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With, Authorzation",
+                  "Access-Control-Allow-Origin": "*",
+                  Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: true,
+                maxBodyLength: 2000,
+                maxContentLength: 2000,
+                maxRedirects: 5,
+                validateStatus: function validateStatus(status) {
+                  return status >= 200 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context4.abrupt("return", _context4.sent);
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  }
+};
+var mutations = {
+  listService: function listService(results, data) {
+    return results.data = data;
+  },
+  destroyService: function destroyService(results, args) {
+    return results.service = results.service.filter(function (x) {
+      return x.id !== args;
+    });
+  },
+  updateService: function updateService(results, args) {
+    return results.service = results.service.map(function (x) {
+      return x.id === args.id ? args : x;
+    });
+  }
+};
+var getters = {
+  listService: function listService(results) {
+    return results.service;
+  }
+};
 exports.default = {
   state: state,
   actions: actions,
@@ -3515,6 +3750,26 @@ exports.default = {
   mutations: mutations,
   getters: getters
 };
+
+/***/ }),
+
+/***/ "./resources/js/store/prefix/cors.ts":
+/*!*******************************************!*\
+  !*** ./resources/js/store/prefix/cors.ts ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
+
+
+__webpack_require__(/*! core-js/modules/es.object.define-property.js */ "./node_modules/core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.origin = void 0;
+exports.origin = process.env.test ? "http://localhost:8000" : "http://bengkelmobilsangkut.xyz";
 
 /***/ }),
 
@@ -8396,7 +8651,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".nc-message[data-v-460f997c],\n.nc-message-error[data-v-460f997c],\n#nc-message-close[data-v-460f997c] {\n  position: fixed;\n  right: 0px;\n  width: 400px;\n  padding: 10px 10px 10px 10px;\n  border-top-left-radius: 15px;\n  border-bottom-left-radius: 15px;\n  background-color: red;\n  color: white;\n  word-wrap: break-word;\n}\n.nc-message-hidden[data-v-460f997c] {\n  display: none;\n  visibility: hidden;\n}\n.nc-message[data-v-460f997c] {\n  background-color: greenyellow;\n  -webkit-animation: message-data-v-460f997c 2s forwards;\n          animation: message-data-v-460f997c 2s forwards;\n}\n.nc-message-error[data-v-460f997c] {\n  -webkit-animation: message-data-v-460f997c 2s forwards;\n          animation: message-data-v-460f997c 2s forwards;\n  background-color: red;\n}\n#nc-message-close[data-v-460f997c] {\n  -webkit-animation: message-close 2s forwards;\n          animation: message-close 2s forwards;\n}\n@-webkit-keyframes message-data-v-460f997c {\nfrom {\n    right: -1200px;\n    bottom: 0px;\n}\nto {\n    right: 0px;\n    bottom: 15px;\n}\n}\n@keyframes message-data-v-460f997c {\nfrom {\n    right: -1200px;\n    bottom: 0px;\n}\nto {\n    right: 0px;\n    bottom: 15px;\n}\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".nc-message[data-v-460f997c],\n.nc-message-error[data-v-460f997c],\n#nc-message-close[data-v-460f997c] {\n  position: fixed;\n  right: 0px;\n  width: 400px;\n  padding: 10px 10px 10px 10px;\n  border-top-left-radius: 15px;\n  border-bottom-left-radius: 15px;\n  background-color: red;\n  color: white;\n  word-wrap: break-word;\n}\n.nc-message-hidden[data-v-460f997c] {\n  display: none;\n  visibility: hidden;\n}\n.nc-message[data-v-460f997c] {\n  background-color: green;\n  -webkit-animation: message-data-v-460f997c 2s forwards;\n          animation: message-data-v-460f997c 2s forwards;\n}\n.nc-message-error[data-v-460f997c] {\n  -webkit-animation: message-data-v-460f997c 2s forwards;\n          animation: message-data-v-460f997c 2s forwards;\n  background-color: red;\n}\n#nc-message-close[data-v-460f997c] {\n  -webkit-animation: message-close 2s forwards;\n          animation: message-close 2s forwards;\n}\n@-webkit-keyframes message-data-v-460f997c {\nfrom {\n    right: -1200px;\n    bottom: 0px;\n}\nto {\n    right: 0px;\n    bottom: 15px;\n}\n}\n@keyframes message-data-v-460f997c {\nfrom {\n    right: -1200px;\n    bottom: 0px;\n}\nto {\n    right: 0px;\n    bottom: 15px;\n}\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
