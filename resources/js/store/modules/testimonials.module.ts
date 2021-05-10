@@ -1,29 +1,30 @@
 import axios from "axios";
 import { origin } from "../prefix/cors";
-import { Service, ServiceState, Update } from "../types/interface";
+import { Testimonials, TestimonialsState, Update } from "../types/interface";
 
-const state: ServiceState = {
-    service: [],
+const state: TestimonialsState = {
+    testimonials: [],
     data: {
         id: 0,
         name: "",
-        description: "",
-        image: ""
+        comment: "",
+        avatar: "",
+        from: ""
     }
 };
 
 const actions = {
-    async createService({ commit }: any, args: FormData) {
-        return await axios.post("/api/v1/service", args, {
+    async createTestimonials({ commit }: any, args: FormData) {
+        return await axios.post("/api/v1/testimonials", args, {
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "multipart/form-data",
                 "Access-Control-Allow-Methods": "POST",
-                "Access-Control-Allow-origin": origin,
                 "Access-Control-Allow-Headers":
                     "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
+                "Access-Control-Allow-Origin": origin,
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             },
-            timeout: 865000,
+            timeout: 856000,
             responseType: "json",
             withCredentials: true,
             maxRedirects: 5,
@@ -32,14 +33,14 @@ const actions = {
             validateStatus: (status: number) => status >= 201 && status < 300
         });
     },
-    async listService({ commit }: any) {
-        return await axios.get("/api/v1/service", {
+    async listTestimonials({ commit }: any) {
+        return await axios.get("/api/v1/testimonials/", {
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET",
                 "Access-Control-Allow-Headers":
                     "Content-Type, Origin, Accepted, X-Requested-With",
-                "Access-Control-Allow-origin": origin
+                "Access-Control-Allow-Origin": origin
             },
             timeout: 865000,
             responseType: "json",
@@ -50,14 +51,14 @@ const actions = {
             validateStatus: (status: number) => status >= 200 && status < 300
         });
     },
-    async putService({ commit }: any, args: Update) {
-        return await axios.post(`/api/v1/service/${args.id}/`, args.data, {
+    async destroyTestimonials({ commit }: any, args: number) {
+        return await axios.delete(`/api/v1/testimonials/${args}/`, {
             headers: {
-                "Content-Type": "multipart/form-data",
-                "Access-Control-Allow-Methods": "POST",
+                "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": origin,
+                "Access-Control-Allow-Methods": "DELETE",
                 "Access-Control-Allow-Headers":
-                    "Content-Type, Origin, Accepted, X-Reuqested-With, Authorzation",
+                    "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             },
             timeout: 865000,
@@ -69,14 +70,14 @@ const actions = {
             validateStatus: (status: number) => status >= 200 && status < 300
         });
     },
-    async deleteDestroy({ commit }: any, args: number) {
-        return await axios.delete(`/api/v1/service/${args}`, {
+    async putTestimonials({ commit }: any, args: Update) {
+        return await axios.post(`/api/v1/testimonials/${args.id}`, args.data, {
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Methods": "DELETE",
+                "Access-Control-Allow-Methods": "POST",
+                "Access-Control-Allow-Origin": origin,
                 "Access-Control-Allow-Headers":
-                    "Content-Type, Origin, Accepted, X-Requested-With, Authorzation",
-                "Access-Control-Allow-Origin": "*",
+                    "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             },
             timeout: 865000,
@@ -90,19 +91,20 @@ const actions = {
     }
 };
 const mutations = {
-    addService: (results: ServiceState, data: Service) =>
-        results.service.unshift(data),
-    listService: (results: ServiceState, data: any) => (results.data = data),
-    destroyService: (results: ServiceState, args: number) =>
-        (results.service = results.service.filter(function(x) {
+    listTestimonials: (results: TestimonialsState, data: any) =>
+        (results.testimonials = data),
+    addTestimonials: (results: TestimonialsState, data: Testimonials) =>
+        results.testimonials.unshift(data),
+    destroyTestimonials: (results: TestimonialsState, args: number) =>
+        (results.testimonials = results.testimonials.filter(function(x) {
             return x.id !== args;
         })),
-    updateService: (results: ServiceState, args: Service) =>
-        (results.service = results.service.map(x =>
-            x.id === args.id ? args : x
+    updateTestimonials: (results: TestimonialsState, data: Testimonials) =>
+        (results.testimonials = results.testimonials.map(x =>
+            x.id === data.id ? data : x
         ))
 };
 const getters = {
-    listService: (results: ServiceState) => results.service
+    listTestimonials: (results: TestimonialsState) => results.testimonials
 };
 export default { state, actions, mutations, getters };

@@ -1,10 +1,5 @@
 import axios from "axios";
-import { Album, AlbumState } from "../types/interface";
-
-interface Update {
-    id: number;
-    data: FormData;
-}
+import { Album, AlbumState, Update } from "../types/interface";
 
 const state: AlbumState = {
     album: [],

@@ -1,11 +1,6 @@
 import axios from "axios";
 import { origin } from "../prefix/cors";
-import { Vision, VisionState } from "../types/interface";
-
-interface Update {
-    id: number;
-    data: FormData;
-}
+import { Vision, VisionState, Update } from "../types/interface";
 
 const state: VisionState = {
     vision: [],

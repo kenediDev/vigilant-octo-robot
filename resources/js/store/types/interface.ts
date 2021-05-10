@@ -80,3 +80,8 @@ export interface AlbumState {
     album: Album[];
     data: Album;
 }
+
+export interface Update {
+    id: number;
+    data: FormData;
+}

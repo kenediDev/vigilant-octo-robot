@@ -55,9 +55,27 @@
           type="text"
           name="title"
           id="title"
-          placeholder="Title"
+          :placeholder="addChoice === 'testimoni' ? 'Nama Pengguna' : 'Title'"
           :value="title"
           @input="changeTitle($event)"
+        />
+      </div>
+      <div
+        class="nc-field"
+        id="nc-field-input"
+        v-if="addChoice === 'testimoni' ? true : false"
+      >
+        <input
+          type="text"
+          name="from"
+          id="from"
+          :placeholder="
+            addChoice === 'testimoni'
+              ? 'Dari (Google, Facebook, Yahoo, Instagram)'
+              : ''
+          "
+          :value="from"
+          @input="changeFrom($event)"
         />
       </div>
       <div class="nc-field" id="nc-field-textarea">
@@ -91,6 +109,7 @@ export default class DashboardModal extends Vue {
   @Prop() photo: any;
   @Prop(String) photo_url: string;
   @Prop(String) plus: string;
+  @Prop(String) from: string;
 
   @Prop(Number) add: number;
   @Prop(String) choice: string;
@@ -110,6 +129,10 @@ export default class DashboardModal extends Vue {
   @Emit()
   changePhoto(args) {
     this.$emit("changePhoto", args);
+  }
+  @Emit()
+  changeFrom(args) {
+    this.$emit("changeFrom", args);
   }
   @Emit()
   clickAddChoice(args: string) {
@@ -136,6 +159,7 @@ export default class DashboardModal extends Vue {
         this.vision();
         break;
       case "testimoni":
+        this.testimonials();
         break;
       default:
         break;
@@ -224,6 +248,37 @@ export default class DashboardModal extends Vue {
           window.location.reload();
         }
       });
+  }
+  testimonials() {
+    const data = new FormData();
+    data.append("avatar", this.photo);
+    data.append("name", this.title);
+    data.append("comment", this.description);
+    data.append("from", this.from);
+    if (this.id) {
+    } else {
+      this.$store
+        .dispatch("createTestimonials", data)
+        .then((res: AxiosResponse<any>) => {
+          this.clearInput();
+          this.clickAdd();
+          this.$store.commit("MESSAGE", {
+            message: res.data.message,
+            valid: 1,
+          });
+          this.$store.commit("addTestimonials", res.data.testimoni);
+        })
+        .catch((err) => {
+          if (err.response.data === false) {
+            localStorage.clear();
+            window.location.reload();
+          }
+          this.$store.commit("MESSAGE", {
+            message: err.response.data.message,
+            valid: 2,
+          });
+        });
+    }
   }
 }
 </script>

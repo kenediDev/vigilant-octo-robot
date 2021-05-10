@@ -2537,6 +2537,7 @@ var DashboardComponent = /*#__PURE__*/function (_vue_1$default) {
     _this.addChoice = "album";
     _this.id = 0;
     _this.title = "";
+    _this.from = "";
     _this.description = "";
     _this.photo = "";
     _this.photo_url = "";
@@ -2552,6 +2553,12 @@ var DashboardComponent = /*#__PURE__*/function (_vue_1$default) {
       this.description = "";
       this.photo = "";
       this.photo_url = "";
+      this.from = "";
+    }
+  }, {
+    key: "changeFrom",
+    value: function changeFrom(args) {
+      this.from = args.target.value;
     }
   }, {
     key: "changeTitle",
@@ -2691,6 +2698,11 @@ var DashboardModal = /*#__PURE__*/function (_vue_1$default) {
       this.$emit("changePhoto", args);
     }
   }, {
+    key: "changeFrom",
+    value: function changeFrom(args) {
+      this.$emit("changeFrom", args);
+    }
+  }, {
     key: "clickAddChoice",
     value: function clickAddChoice(args) {
       this.$emit("clickAddChoice", args);
@@ -2722,6 +2734,7 @@ var DashboardModal = /*#__PURE__*/function (_vue_1$default) {
           break;
 
         case "testimoni":
+          this.testimonials();
           break;
 
         default:
@@ -2826,6 +2839,42 @@ var DashboardModal = /*#__PURE__*/function (_vue_1$default) {
         }
       });
     }
+  }, {
+    key: "testimonials",
+    value: function testimonials() {
+      var _this4 = this;
+
+      var data = new FormData();
+      data.append("avatar", this.photo);
+      data.append("name", this.title);
+      data.append("comment", this.description);
+      data.append("from", this.from);
+
+      if (this.id) {} else {
+        this.$store.dispatch("createTestimonials", data).then(function (res) {
+          _this4.clearInput();
+
+          _this4.clickAdd();
+
+          _this4.$store.commit("MESSAGE", {
+            message: res.data.message,
+            valid: 1
+          });
+
+          _this4.$store.commit("addTestimonials", res.data.testimoni);
+        })["catch"](function (err) {
+          if (err.response.data === false) {
+            localStorage.clear();
+            window.location.reload();
+          }
+
+          _this4.$store.commit("MESSAGE", {
+            message: err.response.data.message,
+            valid: 2
+          });
+        });
+      }
+    }
   }]);
 
   return DashboardModal;
@@ -2843,6 +2892,8 @@ __decorate([vue_property_decorator_1.Prop(String), __metadata("design:type", Str
 
 __decorate([vue_property_decorator_1.Prop(String), __metadata("design:type", String)], DashboardModal.prototype, "plus", void 0);
 
+__decorate([vue_property_decorator_1.Prop(String), __metadata("design:type", String)], DashboardModal.prototype, "from", void 0);
+
 __decorate([vue_property_decorator_1.Prop(Number), __metadata("design:type", Number)], DashboardModal.prototype, "add", void 0);
 
 __decorate([vue_property_decorator_1.Prop(String), __metadata("design:type", String)], DashboardModal.prototype, "choice", void 0);
@@ -2856,6 +2907,8 @@ __decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function)
 __decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], DashboardModal.prototype, "changeDescription", null);
 
 __decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], DashboardModal.prototype, "changePhoto", null);
+
+__decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], DashboardModal.prototype, "changeFrom", null);
 
 __decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [String]), __metadata("design:returntype", void 0)], DashboardModal.prototype, "clickAddChoice", null);
 
@@ -3183,13 +3236,16 @@ var service_modules_1 = __importDefault(__webpack_require__(/*! ./modules/servic
 
 var album_modules_1 = __importDefault(__webpack_require__(/*! ./modules/album.modules */ "./resources/js/store/modules/album.modules.ts"));
 
+var testimonials_module_1 = __importDefault(__webpack_require__(/*! ./modules/testimonials.module */ "./resources/js/store/modules/testimonials.module.ts"));
+
 vue_1["default"].use(vuex_1["default"]);
 exports.default = new vuex_1["default"].Store({
   modules: {
     UserModules: user_modules_1["default"],
     VisionModules: vision_modules_1["default"],
     ServiceModules: service_modules_1["default"],
-    AlbumModules: album_modules_1["default"]
+    AlbumModules: album_modules_1["default"],
+    TestimonialsModules: testimonials_module_1["default"]
   }
 });
 
@@ -3641,6 +3697,238 @@ var mutations = {
 var getters = {
   listService: function listService(results) {
     return results.service;
+  }
+};
+exports.default = {
+  state: state,
+  actions: actions,
+  mutations: mutations,
+  getters: getters
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/testimonials.module.ts":
+/*!***********************************************************!*\
+  !*** ./resources/js/store/modules/testimonials.module.ts ***!
+  \***********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _regeneratorRuntime = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+
+var _asyncToGenerator = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js").default;
+
+__webpack_require__(/*! core-js/modules/es.object.define-property.js */ "./node_modules/core-js/modules/es.object.define-property.js");
+
+__webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+
+__webpack_require__(/*! core-js/modules/es.array.map.js */ "./node_modules/core-js/modules/es.array.map.js");
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+var cors_1 = __webpack_require__(/*! ../prefix/cors */ "./resources/js/store/prefix/cors.ts");
+
+var state = {
+  testimonials: [],
+  data: {
+    id: 0,
+    name: "",
+    comment: "",
+    avatar: "",
+    from: ""
+  }
+};
+var actions = {
+  createTestimonials: function createTestimonials(_ref, args) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.next = 3;
+              return axios_1["default"].post("/api/v1/testimonials", args, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  "Access-Control-Allow-Methods": "POST",
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
+                  "Access-Control-Allow-Origin": cors_1.origin,
+                  Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                },
+                timeout: 856000,
+                responseType: "json",
+                withCredentials: true,
+                maxRedirects: 5,
+                maxContentLength: 2000,
+                maxBodyLength: 2000,
+                validateStatus: function validateStatus(status) {
+                  return status >= 201 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context.abrupt("return", _context.sent);
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  listTestimonials: function listTestimonials(_ref2) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.next = 3;
+              return axios_1["default"].get("/api/v1/testimonials/", {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Methods": "GET",
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With",
+                  "Access-Control-Allow-Origin": cors_1.origin
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: false,
+                maxBodyLength: 2000,
+                maxContentLength: 2000,
+                maxRedirects: 5,
+                validateStatus: function validateStatus(status) {
+                  return status >= 200 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  destroyTestimonials: function destroyTestimonials(_ref3, args) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.next = 3;
+              return axios_1["default"]["delete"]("/api/v1/testimonials/".concat(args, "/"), {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": cors_1.origin,
+                  "Access-Control-Allow-Methods": "DELETE",
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
+                  Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: true,
+                maxRedirects: 5,
+                maxContentLength: 2000,
+                maxBodyLength: 2000,
+                validateStatus: function validateStatus(status) {
+                  return status >= 200 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context3.abrupt("return", _context3.sent);
+
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  },
+  putTestimonials: function putTestimonials(_ref4, args) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref4.commit;
+              _context4.next = 3;
+              return axios_1["default"].post("/api/v1/testimonials/".concat(args.id), args.data, {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Methods": "POST",
+                  "Access-Control-Allow-Origin": cors_1.origin,
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
+                  Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: true,
+                maxBodyLength: 2000,
+                maxContentLength: 2000,
+                maxRedirects: 5,
+                validateStatus: function validateStatus(status) {
+                  return status >= 200 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context4.abrupt("return", _context4.sent);
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  }
+};
+var mutations = {
+  listTestimonials: function listTestimonials(results, data) {
+    return results.testimonials = data;
+  },
+  addTestimonials: function addTestimonials(results, data) {
+    return results.testimonials.unshift(data);
+  },
+  destroyTestimonials: function destroyTestimonials(results, args) {
+    return results.testimonials = results.testimonials.filter(function (x) {
+      return x.id !== args;
+    });
+  },
+  updateTestimonials: function updateTestimonials(results, data) {
+    return results.testimonials = results.testimonials.map(function (x) {
+      return x.id === data.id ? data : x;
+    });
+  }
+};
+var getters = {
+  listTestimonials: function listTestimonials(results) {
+    return results.testimonials;
   }
 };
 exports.default = {
@@ -11232,9 +11520,13 @@ var render = function() {
           description: _vm.description,
           photo: _vm.photo,
           photo_url: _vm.photo_url,
-          plus: _vm.plus
+          plus: _vm.plus,
+          from: _vm.from
         },
         on: {
+          changeFrom: function($event) {
+            return _vm.changeFrom($event)
+          },
           changeTitle: function($event) {
             return _vm.changeTitle($event)
           },
@@ -11402,7 +11694,8 @@ var render = function() {
                   type: "text",
                   name: "title",
                   id: "title",
-                  placeholder: "Title"
+                  placeholder:
+                    _vm.addChoice === "testimoni" ? "Nama Pengguna" : "Title"
                 },
                 domProps: { value: _vm.title },
                 on: {
@@ -11413,6 +11706,34 @@ var render = function() {
               })
             ]
           ),
+          _vm._v(" "),
+          (_vm.addChoice === "testimoni"
+          ? true
+          : false)
+            ? _c(
+                "div",
+                { staticClass: "nc-field", attrs: { id: "nc-field-input" } },
+                [
+                  _c("input", {
+                    attrs: {
+                      type: "text",
+                      name: "from",
+                      id: "from",
+                      placeholder:
+                        _vm.addChoice === "testimoni"
+                          ? "Dari (Google, Facebook, Yahoo, Instagram)"
+                          : ""
+                    },
+                    domProps: { value: _vm.from },
+                    on: {
+                      input: function($event) {
+                        return _vm.changeFrom($event)
+                      }
+                    }
+                  })
+                ]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "div",

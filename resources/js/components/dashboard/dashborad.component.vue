@@ -12,6 +12,8 @@
       :photo="photo"
       :photo_url="photo_url"
       :plus="plus"
+      :from="from"
+      v-on:changeFrom="changeFrom($event)"
       v-on:changeTitle="changeTitle($event)"
       v-on:changeDescription="changeDescription($event)"
       v-on:changePhoto="changePhoto($event)"
@@ -42,6 +44,7 @@ export default class DashboardComponent extends Vue {
   addChoice: string = "album";
   id: number = 0;
   title: string = "";
+  from: string = "";
   description: string = "";
   photo: any = "";
   photo_url: any = "";
@@ -54,6 +57,11 @@ export default class DashboardComponent extends Vue {
     this.description = "";
     this.photo = "";
     this.photo_url = "";
+    this.from = "";
+  }
+
+  changeFrom(args) {
+    this.from = args.target.value;
   }
 
   changeTitle(args) {
