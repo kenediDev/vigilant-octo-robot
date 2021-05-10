@@ -46,6 +46,9 @@ class AuthController extends Controller
 
     public function me()
     {
+        if (!auth()->user()) {
+            return response()->json(false, 401);
+        }
         return response()->json(auth()->user(), 200);
     }
 

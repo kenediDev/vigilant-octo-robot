@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,15 @@ Route::group([
     Route::post("reset", [AuthController::class, 'reset']);
     Route::post('update', [AuthController::class, "update"]);
     Route::get("", [AuthController::class, "me"]);
+});
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'v1/service'
+], function () {
+    Route::get('', [ServiceController::class, 'list']);
+    Route::post('', [ServiceController::class, 'create']);
+    Route::post('{id}', [ServiceController::class, 'put']);
+    Route::delete('{id}', [ServiceController::class, 'destroy']);
 });
