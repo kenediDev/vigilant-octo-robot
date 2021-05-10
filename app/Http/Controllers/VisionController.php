@@ -25,10 +25,16 @@ class VisionController extends Controller
         if ($val->fails()) {
             return response()->json($val->errors(), 400);
         }
+        $photo = null;
+        if ($request->hasFile('image')) {
+            $photo = Storage::disk("upload_public")->put("image/vision", $request->file('image'));
+        } else {
+            $photo = $request->image;
+        }
         $create = Vision::create([
             'title' => $request->title,
             'caption' => $request->caption,
-            'image' => Storage::disk("upload_public")->put("image/vision", $request->file('image')),
+            'image' => $photo,
             'user_id' => auth()->user()->id
         ]);
         $create->save();

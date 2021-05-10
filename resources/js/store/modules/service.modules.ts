@@ -95,6 +95,8 @@ const actions = {
     }
 };
 const mutations = {
+    addService: (results: ServiceState, data: Service) =>
+        results.service.unshift(data),
     listService: (results: ServiceState, data: any) => (results.data = data),
     destroyService: (results: ServiceState, args: number) =>
         (results.service = results.service.filter(function(x) {

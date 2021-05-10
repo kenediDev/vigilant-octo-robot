@@ -133,6 +133,7 @@ export default class DashboardModal extends Vue {
         this.service();
         break;
       case "vision":
+        this.vision();
         break;
       case "testimoni":
         break;
@@ -159,6 +160,7 @@ export default class DashboardModal extends Vue {
             message: res.data.message,
             valid: 1,
           });
+          this.$store.commit("addAlbum", res.data.album);
         })
         .catch((err) => {
           if (err.response.data === false) {
@@ -189,6 +191,7 @@ export default class DashboardModal extends Vue {
             message: res.data.message,
             valid: 1,
           });
+          this.$store.commit("addService", res.data.service);
         })
         .catch((err) => {
           if (err.response.data === false) {
@@ -201,6 +204,26 @@ export default class DashboardModal extends Vue {
           });
         });
     }
+  }
+  vision() {
+    const data = new FormData();
+    data.append("title", this.title);
+    data.append("caption", this.description);
+    data.append("image", this.photo);
+    this.$store
+      .dispatch("createVision", data)
+      .then((res: AxiosResponse<any>) => {
+        this.clickAdd();
+        this.clearInput();
+        this.$store.commit("MESSAGE", { message: res.data.message, valid: 1 });
+        this.$store.commit("addVision", res.data.vision);
+      })
+      .catch((err) => {
+        if (err.response.data === false) {
+          localStorage.clear();
+          window.location.reload();
+        }
+      });
   }
 }
 </script>

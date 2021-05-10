@@ -30,7 +30,7 @@ export default class BaseComponent extends Vue {
     this.$router.push({ name: "dashboard" });
     localStorage.setItem(
       "token",
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aCIsImlhdCI6MTYyMDY2ODEyMSwiZXhwIjoxNjIwNjcxNzIxLCJuYmYiOjE2MjA2NjgxMjEsImp0aSI6Ik5zQmM5eFVNbkV1VjNDb1MiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.XI7JHjYGw9j7xENyKK-moBh9NsjDr6qB-vitHVCmdt4"
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aCIsImlhdCI6MTYyMDY3MjQxNywiZXhwIjoxNjIwNjc2MDE3LCJuYmYiOjE2MjA2NzI0MTcsImp0aSI6Ik9EZVRpQnBlREIzSDVBYzgiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.8ua4R9IAXjuJgjRXH1EUOfcLobbUAPLPY7EGtItALhg"
     );
   }
 }

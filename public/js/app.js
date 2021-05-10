@@ -2294,7 +2294,7 @@ var BaseComponent = /*#__PURE__*/function (_vue_1$default) {
       this.$router.push({
         name: "dashboard"
       });
-      localStorage.setItem("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aCIsImlhdCI6MTYyMDY2ODEyMSwiZXhwIjoxNjIwNjcxNzIxLCJuYmYiOjE2MjA2NjgxMjEsImp0aSI6Ik5zQmM5eFVNbkV1VjNDb1MiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.XI7JHjYGw9j7xENyKK-moBh9NsjDr6qB-vitHVCmdt4");
+      localStorage.setItem("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aCIsImlhdCI6MTYyMDY3MjQxNywiZXhwIjoxNjIwNjc2MDE3LCJuYmYiOjE2MjA2NzI0MTcsImp0aSI6Ik9EZVRpQnBlREIzSDVBYzgiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.8ua4R9IAXjuJgjRXH1EUOfcLobbUAPLPY7EGtItALhg");
     }
   }]);
 
@@ -2718,6 +2718,7 @@ var DashboardModal = /*#__PURE__*/function (_vue_1$default) {
           break;
 
         case "vision":
+          this.vision();
           break;
 
         case "testimoni":
@@ -2748,6 +2749,8 @@ var DashboardModal = /*#__PURE__*/function (_vue_1$default) {
             message: res.data.message,
             valid: 1
           });
+
+          _this.$store.commit("addAlbum", res.data.album);
         })["catch"](function (err) {
           if (err.response.data === false) {
             localStorage.clear();
@@ -2781,6 +2784,8 @@ var DashboardModal = /*#__PURE__*/function (_vue_1$default) {
             message: res.data.message,
             valid: 1
           });
+
+          _this2.$store.commit("addService", res.data.service);
         })["catch"](function (err) {
           if (err.response.data === false) {
             localStorage.clear();
@@ -2793,6 +2798,33 @@ var DashboardModal = /*#__PURE__*/function (_vue_1$default) {
           });
         });
       }
+    }
+  }, {
+    key: "vision",
+    value: function vision() {
+      var _this3 = this;
+
+      var data = new FormData();
+      data.append("title", this.title);
+      data.append("caption", this.description);
+      data.append("image", this.photo);
+      this.$store.dispatch("createVision", data).then(function (res) {
+        _this3.clickAdd();
+
+        _this3.clearInput();
+
+        _this3.$store.commit("MESSAGE", {
+          message: res.data.message,
+          valid: 1
+        });
+
+        _this3.$store.commit("addVision", res.data.vision);
+      })["catch"](function (err) {
+        if (err.response.data === false) {
+          localStorage.clear();
+          window.location.reload();
+        }
+      });
     }
   }]);
 
@@ -3589,6 +3621,9 @@ var actions = {
   }
 };
 var mutations = {
+  addService: function addService(results, data) {
+    return results.service.unshift(data);
+  },
   listService: function listService(results, data) {
     return results.data = data;
   },
@@ -3730,20 +3765,224 @@ exports.default = {
 /*!******************************************************!*\
   !*** ./resources/js/store/modules/vision.modules.ts ***!
   \******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
 
+var _regeneratorRuntime = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+
+var _asyncToGenerator = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js").default;
+
 __webpack_require__(/*! core-js/modules/es.object.define-property.js */ "./node_modules/core-js/modules/es.object.define-property.js");
+
+__webpack_require__(/*! core-js/modules/es.array.map.js */ "./node_modules/core-js/modules/es.array.map.js");
+
+__webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-var state = {};
-var actions = {};
-var mutations = {};
-var getters = {};
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+var cors_1 = __webpack_require__(/*! ../prefix/cors */ "./resources/js/store/prefix/cors.ts");
+
+var state = {
+  vision: [],
+  data: {
+    id: 0,
+    title: "",
+    caption: "",
+    image: ""
+  }
+};
+var actions = {
+  createVision: function createVision(_ref, args) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.next = 3;
+              return axios_1["default"].post("/api/v1/vision", args, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  "Access-Control-Allow-Origin": cors_1.origin,
+                  "Access-Control-Allow-Methods": "POST",
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
+                  Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: true,
+                maxRedirects: 5,
+                maxContentLength: 2000,
+                maxBodyLength: 2000,
+                validateStatus: function validateStatus(status) {
+                  return status >= 201 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context.abrupt("return", _context.sent);
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  listVision: function listVision(_ref2) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.next = 3;
+              return axios_1["default"].get("/api/v1/vision", {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Methods": "GET",
+                  "Access-Control-Allow-Origin": cors_1.origin,
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With"
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: false,
+                maxBodyLength: 2000,
+                maxContentLength: 2000,
+                maxRedirects: 5,
+                validateStatus: function validateStatus(status) {
+                  return status >= 200 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  putVision: function putVision(_ref3, args) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.next = 3;
+              return axios_1["default"].post("/api/v1/vision/".concat(args.id, "/"), args.data, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  "Access-Control-Allow-Methods": "POST",
+                  "Access-Control-Allow-Origin": cors_1.origin,
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
+                  Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: true,
+                maxRedirects: 5,
+                maxContentLength: 2000,
+                maxBodyLength: 2000,
+                validateStatus: function validateStatus(status) {
+                  return status >= 200 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context3.abrupt("return", _context3.sent);
+
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  },
+  destroyVision: function destroyVision(_ref4, args) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref4.commit;
+              _context4.next = 3;
+              return axios_1["default"]["delete"]("/api/v1/vision/".concat(args), {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Methods": "DELETE",
+                  "Access-Control-Allow-Origin": cors_1.origin,
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
+                  Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                },
+                timeout: 856000,
+                responseType: "json",
+                withCredentials: true,
+                maxBodyLength: 2000,
+                maxContentLength: 2000,
+                maxRedirects: 5,
+                validateStatus: function validateStatus(status) {
+                  return status >= 200 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context4.abrupt("return", _context4.sent);
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  }
+};
+var mutations = {
+  addVision: function addVision(results, data) {
+    return results.vision.unshift(data);
+  },
+  listVision: function listVision(results, data) {
+    return results.vision = data;
+  },
+  putVision: function putVision(results, data) {
+    return results.vision = results.vision.map(function (x) {
+      return x.id === data.id ? data : x;
+    });
+  },
+  destroyVision: function destroyVision(results, args) {
+    return results.vision = results.vision.filter(function (x) {
+      return x.id !== args;
+    });
+  }
+};
+var getters = {
+  listVision: function listVision(results) {
+    return results.vision;
+  }
+};
 exports.default = {
   state: state,
   actions: actions,
