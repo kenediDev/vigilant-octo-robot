@@ -11,15 +11,19 @@ class AlbumTest extends TestCase
 {
     public function test_album_create()
     {
-        $user = User::orderByDesc("id")->first();
-        $faker = Faker::create();
-        $response = $this->actingAs($user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/album', [
-            'title' => $faker->name(),
-            'caption' => $faker->text(200),
-            'photo' => $faker->image(),
-        ]);
-        $response->assertStatus(201);
-        $this->assertEquals($response['message'], 'Album telah dibuat');
+        $user = User::first();
+        if ($user) {
+            $faker = Faker::create();
+            $response = $this->actingAs($user)->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/album', [
+                'title' => $faker->name(),
+                'caption' => $faker->text(200),
+                'photo' => $faker->image(),
+            ]);
+            $response->assertStatus(201);
+            $this->assertEquals($response['message'], 'Album telah dibuat');
+        } else {
+            $this->markTestSkipped("This not have user");
+        }
     }
 
     public function test_album_list()
@@ -32,21 +36,25 @@ class AlbumTest extends TestCase
     public function test_album_destroy()
     {
         $album = Album::orderByDesc("id")->first();
-        $response = $this->actingAs($album->user, 'api')->delete('/api/v1/album/' . $album->id);
-        $response->assertStatus(200);
-        $this->assertEquals($response['message'], 'Album telah dihapus');
+        if ($album) {
+            $response = $this->actingAs($album->user, 'api')->delete('/api/v1/album/' . $album->id);
+            $response->assertStatus(200);
+            $this->assertEquals($response['message'], 'Album telah dihapus');
+        } else $this->markTestSkipped("Album not have data");
     }
 
     public function test_album_update()
     {
-        $album = Album::orderByDesc('id')->first();
-        $faker = Faker::create();
-        $response = $this->actingAs($album->user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/album/' . $album->id, [
-            'title' => $faker->name(),
-            'caption' => $faker->text(200),
-            'photo' => $faker->image()
-        ]);
-        $response->assertStatus(200);
-        $this->assertEquals($response['message'], 'Album telah diperbarui');
+        $album = Album::first();
+        if ($album) {
+            $faker = Faker::create();
+            $response = $this->actingAs($album->user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/album/' . $album->id, [
+                'title' => $faker->name(),
+                'caption' => $faker->text(200),
+                'photo' => $faker->image()
+            ]);
+            $response->assertStatus(200);
+            $this->assertEquals($response['message'], 'Album telah diperbarui');
+        } else $this->markTestSkipped("Album not have data");
     }
 }
