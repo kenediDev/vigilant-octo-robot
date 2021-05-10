@@ -17,7 +17,7 @@ class VisionTest extends TestCase
             $response = $this->actingAs($user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/vision', [
                 'title' => $faker->jobTitle(),
                 'caption' => $faker->text(200),
-                'image' => $faker->image()
+                'image' => $faker->imageUrl()
             ]);
             $response->assertStatus(201);
             $this->assertEquals($response['message'], 'Visi telah dibuat');
@@ -49,7 +49,7 @@ class VisionTest extends TestCase
             $response = $this->actingAs($vision->user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/vision/' . $vision->id, [
                 'title' => $faker->title(),
                 'caption' => $faker->text(200),
-                'image' => $faker->image()
+                'image' => $faker->imageUrl()
             ]);
             $response->assertStatus(200);
             $this->assertEquals($response['message'], 'Visi telah diperbarui');

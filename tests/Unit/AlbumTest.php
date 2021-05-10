@@ -17,8 +17,9 @@ class AlbumTest extends TestCase
             $response = $this->actingAs($user)->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/album', [
                 'title' => $faker->name(),
                 'caption' => $faker->text(200),
-                'photo' => $faker->image(),
+                'photo' => $faker->imageUrl(),
             ]);
+
             $response->assertStatus(201);
             $this->assertEquals($response['message'], 'Album telah dibuat');
         } else {
@@ -51,7 +52,7 @@ class AlbumTest extends TestCase
             $response = $this->actingAs($album->user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/album/' . $album->id, [
                 'title' => $faker->name(),
                 'caption' => $faker->text(200),
-                'photo' => $faker->image()
+                'photo' => $faker->imageUrl()
             ]);
             $response->assertStatus(200);
             $this->assertEquals($response['message'], 'Album telah diperbarui');

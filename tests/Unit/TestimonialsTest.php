@@ -21,7 +21,7 @@ class TestimonialsTest extends TestCase
         if ($user) {
             $faker = Faker::create();
             $response = $this->actingAs($user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/testimonials', [
-                'avatar' => $faker->image(),
+                'avatar' => $faker->imageUrl(),
                 'name' => $faker->firstName(),
                 'comment' => $faker->text(200),
                 'from' => 'Google'
@@ -36,7 +36,7 @@ class TestimonialsTest extends TestCase
         if ($testimonials) {
             $faker = Faker::create();
             $response = $this->actingAs($testimonials->user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/testimonials/' . $testimonials->id, [
-                'avatar' => $faker->image(),
+                'avatar' => $faker->imageUrl(),
                 'name' => $faker->firstName() . 'Update',
                 'comment' => $faker->text(200),
                 'from' => 'Yahoo'

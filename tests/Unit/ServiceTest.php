@@ -14,7 +14,7 @@ class ServiceTest extends TestCase
         $user = User::first();
         if ($user) {
             $faker = Faker::create();
-            $response = $this->actingAs($user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/service', ['name' => $faker->name(), 'description' => $faker->text(200), 'image' => $faker->image()]);
+            $response = $this->actingAs($user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/service', ['name' => $faker->name(), 'description' => $faker->text(200), 'image' => $faker->imageUrl()]);
             $response->assertStatus(201);
             $this->assertEquals($response["message"], "Service telah dibuat");
         } else $this->markTestSkipped("User not have data");
@@ -34,7 +34,7 @@ class ServiceTest extends TestCase
             $faker = Faker::create();
             $response = $this->actingAs($service->user, 'api')->withHeaders(['Content-Type', 'multipart/form-data'])->post('/api/v1/service/' . $service->id, [
                 'name' => $faker->name() . "Update",
-                'image' => $faker->image(),
+                'image' => $faker->imageUrl(),
                 'description' => $faker->text(200)
             ]);
             $response->assertStatus(200);

@@ -27,10 +27,16 @@ class AlbumController extends Controller
         if ($val->fails()) {
             return response()->json($val->errors(), 400);
         }
+        $photo = null;
+        if ($request->hasFile("photo")) {
+            $photo = Storage::disk('upload_public')->put('image/album', $request->file('photo'));
+        } else {
+            $photo = $request->photo;
+        }
         $create = Album::create([
             'title' => $request->title,
             'caption' => $request->caption,
-            'photo' => Storage::disk('upload_public')->put('image/album', $request->file('photo')),
+            'photo' => $photo,
             'user_id' => auth()->user()->id
         ]);
         $create->save();
