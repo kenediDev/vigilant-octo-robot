@@ -1,5 +1,11 @@
 {
-    "private": true,
+    "name": "how",
+    "version": "1.0.0",
+    "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\"></a></p>",
+    "main": "babel.config.js",
+    "directories": {
+        "test": "tests"
+    },
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
@@ -9,18 +15,46 @@
         "prod": "npm run production",
         "production": "mix --production"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kenediDev/vigilant-octo-robot.git"
+    },
+    "author": "kenedi novriansyah",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/kenediDev/vigilant-octo-robot/issues"
+    },
+    "homepage": "https://github.com/kenediDev/vigilant-octo-robot#readme",
     "devDependencies": {
-        "axios": "^0.21",
+        "@babel/core": "^7.14.0",
+        "@babel/plugin-proposal-decorators": "^7.13.15",
+        "@babel/plugin-transform-typescript": "^7.13.0",
+        "@babel/preset-env": "^7.14.1",
+        "@babel/preset-typescript": "^7.13.0",
+        "@types/axios": "^0.14.0",
+        "@vue/babel-preset-app": "^4.5.13",
+        "babel-loader": "^8.2.2",
         "bootstrap": "^4.6.0",
         "jquery": "^3.6",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
+        "laravel-mix": "^6.0.19",
+        "node-sass": "^6.0.0",
         "popper.js": "^1.16.1",
-        "postcss": "^8.1.14",
+        "postcss": "^8.2.14",
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
+        "ts-loader": "^9.1.2",
+        "typescript": "^4.2.4",
         "vue": "^2.6.12",
-        "vue-template-compiler": "^2.6.12"
+        "vue-loader": "^15.9.6",
+        "vue-template-compiler": "^2.6.12",
+        "webpack": "^5.36.2"
+    },
+    "dependencies": {
+        "axios": "^0.21.1",
+        "vue-class-component": "^7.2.6",
+        "vue-property-decorator": "^9.1.2",
+        "vue-router": "^3.5.1",
+        "vuex": "^3.6.2"
     }
 }

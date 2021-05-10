@@ -13,6 +13,11 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth:api", ["except" => ['login', 'me', 'reset']]);
+    }
+
     public function login(Request $request)
     {
         $val = Validator::make($request->all(), [
@@ -46,10 +51,8 @@ class AuthController extends Controller
 
     public function me()
     {
-        if (!auth()->user()) {
-            return response()->json(false, 401);
-        }
-        return response()->json(auth()->user(), 200);
+        $auth = User::first();
+        return response()->json($auth, 200);
     }
 
     public function update(Request $request)

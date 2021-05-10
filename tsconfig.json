@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es2018",
+        "module": "commonjs",
+        "lib": ["es5", "es6", "dom", "es2018", "esnext.asynciterable"],
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "strict": false,
+        "outDir": "./dist",
+        "esModuleInterop": true
+    },
+    "include": ["resources/js/**/*.ts"],
+    "exclude": ["node_modules", "bower_components"]
+}
