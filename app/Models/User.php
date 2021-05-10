@@ -61,4 +61,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Service::class);
     }
+
+    public function album()
+    {
+        return $this->hasMany(Album::class);
+    }
 }

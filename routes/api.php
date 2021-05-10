@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
@@ -40,4 +41,14 @@ Route::group([
     Route::post('', [ServiceController::class, 'create']);
     Route::post('{id}', [ServiceController::class, 'put']);
     Route::delete('{id}', [ServiceController::class, 'destroy']);
+});
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'v1/album'
+], function () {
+    Route::post('', [AlbumController::class, 'create']);
+    Route::get('', [AlbumController::class, 'list']);
+    Route::post('{id}', [AlbumController::class, 'put']);
+    Route::delete('{id}', [AlbumController::class, 'destroy']);
 });
