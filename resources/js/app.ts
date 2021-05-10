@@ -10,5 +10,5 @@ const app = new Vue({
     render: h => h(BaseComponent)
 });
 
-// kO(8xT8oHG*a00
+// kO(8xT8oHG*a00 // -> ssh
 // )5CnxSdL@_{f

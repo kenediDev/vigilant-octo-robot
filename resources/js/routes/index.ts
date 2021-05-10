@@ -1,11 +1,12 @@
 import Vue, { VueConstructor } from "vue";
 import VueRouter from "vue-router";
 import HomeComponent from "../components/home.component.vue";
+import DashboardComponent from "../components/dashboard/dashborad.component.vue";
 
 Vue.use(VueRouter);
 
-type RouteName = "home";
-type RoutePath = "/";
+type RouteName = "home" | "dashboard";
+type RoutePath = "/" | "/dashboard";
 
 interface Routes {
     name: RouteName;
@@ -18,6 +19,11 @@ const routes: Routes[] = [
         name: "home",
         path: "/",
         component: HomeComponent
+    },
+    {
+        name: "dashboard",
+        path: "/dashboard",
+        component: DashboardComponent
     }
 ];
 

@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { User, UserState } from "../types/userTypes";
+import { Message, User, UserState } from "../types/interface";
 
 const state: UserState = {
     user: [],
@@ -44,9 +44,11 @@ const actions = {
     }
 };
 const mutations = {
-    ME: (results: UserState, data: User) => (results.data = data)
+    ME: (results: UserState, data: User) => (results.data = data),
+    MESSAGE: (results: UserState, data: Message) => (results.message = data)
 };
 const getters = {
-    me: (results: UserState) => results.data
+    me: (results: UserState) => results.data,
+    message: (results: UserState) => results.message
 };
 export default { state, actions, mutations, getters };
