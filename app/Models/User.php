@@ -66,4 +66,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Album::class);
     }
+
+    public function vision()
+    {
+        return $this->hasMany(Vision::class);
+    }
 }

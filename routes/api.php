@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\VisionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -51,4 +52,14 @@ Route::group([
     Route::get('', [AlbumController::class, 'list']);
     Route::post('{id}', [AlbumController::class, 'put']);
     Route::delete('{id}', [AlbumController::class, 'destroy']);
+});
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'v1/vision'
+], function () {
+    Route::post('', [VisionController::class, 'create']);
+    Route::get('', [VisionController::class, 'list']);
+    Route::post('{id}', [VisionController::class, 'put']);
+    Route::delete('{id}', [VisionController::class, 'destroy']);
 });
