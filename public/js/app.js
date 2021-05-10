@@ -2379,6 +2379,7 @@ var app = new vue_1["default"]({
     return h(base_component_vue_1["default"]);
   }
 }); // kO(8xT8oHG*a00
+// )5CnxSdL@_{f
 
 /***/ }),
 
@@ -2448,12 +2449,136 @@ var vuex_1 = __importDefault(__webpack_require__(/*! vuex */ "./node_modules/vue
 
 var user_modules_1 = __importDefault(__webpack_require__(/*! ./modules/user.modules */ "./resources/js/store/modules/user.modules.ts"));
 
+var vision_modules_1 = __importDefault(__webpack_require__(/*! ./modules/vision.modules */ "./resources/js/store/modules/vision.modules.ts"));
+
+var service_modules_1 = __importDefault(__webpack_require__(/*! ./modules/service.modules */ "./resources/js/store/modules/service.modules.ts"));
+
+var album_modules_1 = __importDefault(__webpack_require__(/*! ./modules/album.modules */ "./resources/js/store/modules/album.modules.ts"));
+
 vue_1["default"].use(vuex_1["default"]);
 exports.default = new vuex_1["default"].Store({
   modules: {
-    UserModules: user_modules_1["default"]
+    UserModules: user_modules_1["default"],
+    VisionModules: vision_modules_1["default"],
+    ServiceModules: service_modules_1["default"],
+    AlbumModules: album_modules_1["default"]
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/album.modules.ts":
+/*!*****************************************************!*\
+  !*** ./resources/js/store/modules/album.modules.ts ***!
+  \*****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _regeneratorRuntime = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+
+var _asyncToGenerator = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js").default;
+
+__webpack_require__(/*! core-js/modules/es.object.define-property.js */ "./node_modules/core-js/modules/es.object.define-property.js");
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+var state = {
+  album: [],
+  data: {
+    id: 1,
+    title: "",
+    caption: "",
+    photo: ""
+  }
+};
+var actions = {
+  create: function create(_ref, args) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+      var commit;
+      return _regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.next = 3;
+              return axios_1["default"].post("/api/v1/album", args, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  "Access-Control-Allow-Methods": "POST",
+                  "Access-Control-Allow-Origin": origin,
+                  "Access-Control-Allow-Headers": "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
+                  Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                },
+                timeout: 856000,
+                responseType: "json",
+                withCredentials: true,
+                maxRedirects: 5,
+                maxContentLength: 2000,
+                maxBodyLength: 2000,
+                validateStatus: function validateStatus(status) {
+                  return status >= 201 && status < 300;
+                }
+              });
+
+            case 3:
+              return _context.abrupt("return", _context.sent);
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  }
+};
+var mutations = {};
+var getters = {};
+exports.default = {
+  state: state,
+  actions: actions,
+  mutations: mutations,
+  getters: getters
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/service.modules.ts":
+/*!*******************************************************!*\
+  !*** ./resources/js/store/modules/service.modules.ts ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+__webpack_require__(/*! core-js/modules/es.object.define-property.js */ "./node_modules/core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var state = {};
+var actions = {};
+var mutations = {};
+var getters = {};
+exports.default = {
+  state: state,
+  actions: actions,
+  mutations: mutations,
+  getters: getters
+};
 
 /***/ }),
 
@@ -2551,6 +2676,33 @@ var getters = {
     return results.data;
   }
 };
+exports.default = {
+  state: state,
+  actions: actions,
+  mutations: mutations,
+  getters: getters
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/vision.modules.ts":
+/*!******************************************************!*\
+  !*** ./resources/js/store/modules/vision.modules.ts ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+__webpack_require__(/*! core-js/modules/es.object.define-property.js */ "./node_modules/core-js/modules/es.object.define-property.js");
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var state = {};
+var actions = {};
+var mutations = {};
+var getters = {};
 exports.default = {
   state: state,
   actions: actions,
