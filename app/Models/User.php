@@ -71,4 +71,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Vision::class);
     }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonials::class);
+    }
 }
