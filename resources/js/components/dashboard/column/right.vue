@@ -1,19 +1,34 @@
 <template>
   <div class="nc-col">
-    <album v-if="choice === 'album'" />
-    <vision v-else-if="choice === 'vision'" />
-    <service v-else-if="choice === 'service'" />
-    <testimonials v-else-if="choice === 'testimoni'" />
+    <album v-if="choice === 'album'" v-on:updateAlbum="updateAlbum($event)" />
+    <vision
+      v-else-if="choice === 'vision'"
+      v-on:updateVision="updateVision($event)"
+    />
+    <service
+      v-else-if="choice === 'service'"
+      v-on:updateService="updateService($event)"
+    />
+    <testimonials
+      v-else-if="choice === 'testimoni'"
+      v-on:updateTestimonials="updateTestimonials($event)"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Emit, Prop } from "vue-property-decorator";
 import service from "../dashboard.service.vue";
 import testimonials from "../dashboard.testimonials.vue";
 import vision from "../dashborad.vision.vue";
 import album from "../dashboard.album.vue";
+import {
+  Album,
+  Service,
+  Testimonials,
+  Vision,
+} from "../../../store/types/interface";
 
 @Component({
   components: {
@@ -25,6 +40,24 @@ import album from "../dashboard.album.vue";
 })
 export default class RightColumn extends Vue {
   @Prop(String) choice: string;
+
+  @Emit()
+  updateAlbum(args: Album) {
+    this.$emit("updateAlbum", args);
+  }
+
+  @Emit()
+  updateService(args: Service) {
+    this.$emit("updateService", args);
+  }
+  @Emit()
+  updateVision(args: Vision) {
+    this.$emit("updateVision", args);
+  }
+  @Emit()
+  updateTestimonials(args: Testimonials) {
+    this.$emit("updateTestimonials", args);
+  }
 }
 </script>
 

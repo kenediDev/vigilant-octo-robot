@@ -14,7 +14,7 @@
             "
           >
             <div class="nc-testimonials-dropdown-menu">
-              <a href="#">Edit</a>
+              <a href="#" @click="updateTestimonials(items)">Edit</a>
               <a href="#" @click="clickDestroy(items.id)">Hapus</a>
             </div>
           </div>
@@ -38,8 +38,9 @@
 <script lang="ts">
 import { AxiosResponse } from "axios";
 import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Emit } from "vue-property-decorator";
 import { mapGetters } from "vuex";
+import { Testimonials } from "../../store/types/interface";
 
 @Component({
   computed: {
@@ -48,6 +49,12 @@ import { mapGetters } from "vuex";
 })
 export default class DashboardTestimonials extends Vue {
   dropdown: number = 0;
+
+  @Emit()
+  updateTestimonials(args: Testimonials) {
+    this.dropdown = 0;
+    this.$emit("updateTestimonials", args);
+  }
   clickDropdown(args: number) {
     if (this.dropdown) {
       if (this.dropdown !== args) {

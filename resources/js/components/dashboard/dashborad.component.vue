@@ -7,7 +7,13 @@
         v-on:changeChoiceScreen="changeChoiceScreen($event)"
         :choice="choiceScreen"
       />
-      <right :choice="choiceScreen" />
+      <right
+        :choice="choiceScreen"
+        v-on:updateAlbum="updateAlbum($event)"
+        v-on:updateService="updateService($event)"
+        v-on:updateTestimonials="updateTestimonials($event)"
+        v-on:updateVision="updateVision($event)"
+      />
     </div>
     <modal
       :add="add"
@@ -35,6 +41,12 @@ import { Component } from "vue-property-decorator";
 import modal from "./dashborad.modal.vue";
 import left from "./column/left.vue";
 import right from "./column/right.vue";
+import {
+  Album,
+  Service,
+  Testimonials,
+  Vision,
+} from "../../store/types/interface";
 
 @Component({
   components: {
@@ -87,6 +99,43 @@ export default class DashboardComponent extends Vue {
 
   clickAddChoice(args: string) {
     this.addChoice = args;
+  }
+
+  updateAlbum(args: Album) {
+    this.id = args.id;
+    this.title = args.title;
+    this.description = args.caption;
+    this.photo_url = `http://${window.location.host}/${args.photo}`;
+    this.add = 1;
+    this.addChoice = "album";
+  }
+
+  updateService(args: Service) {
+    this.id = args.id;
+    this.title = args.name;
+    this.description = args.description;
+    this.photo_url = `http://${window.location.host}/${args.image}`;
+    this.add = 1;
+    this.addChoice = "service";
+  }
+
+  updateVision(args: Vision) {
+    this.id = args.id;
+    this.title = args.title;
+    this.description = args.caption;
+    this.photo_url = args.image;
+    this.add = 1;
+    this.addChoice = "vision";
+  }
+
+  updateTestimonials(args: Testimonials) {
+    this.id = args.id;
+    this.title = args.name;
+    this.description = args.comment;
+    this.from = args.from;
+    this.photo_url = `http://${window.location.host}/${args.avatar}`;
+    this.add = 1;
+    this.addChoice = "testimoni";
   }
 
   // add this is controller open and close modal

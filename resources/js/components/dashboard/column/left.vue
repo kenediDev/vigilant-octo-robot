@@ -50,9 +50,12 @@
           <i class="fas fa-paperclip"></i>
           <span>Testimoni</span>
         </a>
-        <button @click="clickAdd()">
+        <button class="nc-dashboard-btn-default" @click="clickAdd()">
           Add
           <i class="fas fa-plus"></i>
+        </button>
+        <button @click="clickDefault()" class="nc-dashborad-btn-back">
+          <i class="fas fa-arrow-left"></i>Back
         </button>
       </div>
     </div>
@@ -76,6 +79,10 @@ export default class LeftColumn extends Vue {
   @Emit()
   changeChoiceScreen(args: string) {
     this.$emit("changeChoiceScreen", args);
+  }
+
+  clickDefault() {
+    this.$router.push({ name: "home" });
   }
 }
 </script>
@@ -187,7 +194,28 @@ export default class LeftColumn extends Vue {
       border-right: solid 2px #38c172;
       background-color: #38c1721f;
     }
-    button {
+    .nc-dashboard-btn-default {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 7px 30px 7px 30px;
+      background-color: white;
+      color: #38c172;
+      font-weight: bold;
+      width: 80%;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+      border-right: solid 2px #38c172;
+      margin-bottom: 5px;
+    }
+    .nc-dashborad-btn-back {
+      margin-bottom: 5px;
       border: none;
       outline: none;
       cursor: pointer;

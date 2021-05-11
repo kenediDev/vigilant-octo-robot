@@ -2387,6 +2387,13 @@ var LeftColumn = /*#__PURE__*/function (_vue_1$default) {
     value: function changeChoiceScreen(args) {
       this.$emit("changeChoiceScreen", args);
     }
+  }, {
+    key: "clickDefault",
+    value: function clickDefault() {
+      this.$router.push({
+        name: "home"
+      });
+    }
   }]);
 
   return LeftColumn;
@@ -2415,6 +2422,8 @@ exports.default = LeftColumn;
 
 
 var _classCallCheck = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js").default;
+
+var _createClass = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js").default;
 
 var _inherits = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js").default;
 
@@ -2473,10 +2482,40 @@ var RightColumn = /*#__PURE__*/function (_vue_1$default) {
     return _super.apply(this, arguments);
   }
 
+  _createClass(RightColumn, [{
+    key: "updateAlbum",
+    value: function updateAlbum(args) {
+      this.$emit("updateAlbum", args);
+    }
+  }, {
+    key: "updateService",
+    value: function updateService(args) {
+      this.$emit("updateService", args);
+    }
+  }, {
+    key: "updateVision",
+    value: function updateVision(args) {
+      this.$emit("updateVision", args);
+    }
+  }, {
+    key: "updateTestimonials",
+    value: function updateTestimonials(args) {
+      this.$emit("updateTestimonials", args);
+    }
+  }]);
+
   return RightColumn;
 }(vue_1["default"]);
 
 __decorate([vue_property_decorator_1.Prop(String), __metadata("design:type", String)], RightColumn.prototype, "choice", void 0);
+
+__decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], RightColumn.prototype, "updateAlbum", null);
+
+__decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], RightColumn.prototype, "updateService", null);
+
+__decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], RightColumn.prototype, "updateVision", null);
+
+__decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], RightColumn.prototype, "updateTestimonials", null);
 
 RightColumn = __decorate([vue_property_decorator_1.Component({
   components: {
@@ -2525,6 +2564,10 @@ var __decorate = this && this.__decorate || function (decorators, target, key, d
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
+var __metadata = this && this.__metadata || function (k, v) {
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -2553,6 +2596,11 @@ var DashboardAlbum = /*#__PURE__*/function (_vue_1$default) {
   }
 
   _createClass(DashboardAlbum, [{
+    key: "updateAlbum",
+    value: function updateAlbum(args) {
+      this.$emit("updateAlbum", args);
+    }
+  }, {
     key: "clickDestroy",
     value: function clickDestroy(args) {
       var _this = this;
@@ -2580,6 +2628,8 @@ var DashboardAlbum = /*#__PURE__*/function (_vue_1$default) {
 
   return DashboardAlbum;
 }(vue_1["default"]);
+
+__decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], DashboardAlbum.prototype, "updateAlbum", null);
 
 DashboardAlbum = __decorate([vue_property_decorator_1.Component({
   computed: _objectSpread({}, vuex_1.mapGetters(["listAlbum"]))
@@ -2623,6 +2673,10 @@ var __decorate = this && this.__decorate || function (decorators, target, key, d
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
+var __metadata = this && this.__metadata || function (k, v) {
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -2651,6 +2705,11 @@ var DashboardService = /*#__PURE__*/function (_vue_1$default) {
   }
 
   _createClass(DashboardService, [{
+    key: "updateService",
+    value: function updateService(args) {
+      this.$emit("updateService", args);
+    }
+  }, {
     key: "clickDestroy",
     value: function clickDestroy(args) {
       var _this = this;
@@ -2678,6 +2737,8 @@ var DashboardService = /*#__PURE__*/function (_vue_1$default) {
 
   return DashboardService;
 }(vue_1["default"]);
+
+__decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], DashboardService.prototype, "updateService", null);
 
 DashboardService = __decorate([vue_property_decorator_1.Component({
   computed: _objectSpread({}, vuex_1.mapGetters(["listService"]))
@@ -2721,6 +2782,10 @@ var __decorate = this && this.__decorate || function (decorators, target, key, d
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
+var __metadata = this && this.__metadata || function (k, v) {
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -2753,6 +2818,12 @@ var DashboardTestimonials = /*#__PURE__*/function (_vue_1$default) {
   }
 
   _createClass(DashboardTestimonials, [{
+    key: "updateTestimonials",
+    value: function updateTestimonials(args) {
+      this.dropdown = 0;
+      this.$emit("updateTestimonials", args);
+    }
+  }, {
     key: "clickDropdown",
     value: function clickDropdown(args) {
       if (this.dropdown) {
@@ -2793,6 +2864,8 @@ var DashboardTestimonials = /*#__PURE__*/function (_vue_1$default) {
 
   return DashboardTestimonials;
 }(vue_1["default"]);
+
+__decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], DashboardTestimonials.prototype, "updateTestimonials", null);
 
 DashboardTestimonials = __decorate([vue_property_decorator_1.Component({
   computed: _objectSpread({}, vuex_1.mapGetters(["listTestimonials"]))
@@ -2835,6 +2908,10 @@ __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules
 __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
 
 __webpack_require__(/*! core-js/modules/web.url.js */ "./node_modules/core-js/modules/web.url.js");
+
+__webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
+
+__webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
 
 var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
@@ -2931,6 +3008,47 @@ var DashboardComponent = /*#__PURE__*/function (_vue_1$default) {
     key: "clickAddChoice",
     value: function clickAddChoice(args) {
       this.addChoice = args;
+    }
+  }, {
+    key: "updateAlbum",
+    value: function updateAlbum(args) {
+      this.id = args.id;
+      this.title = args.title;
+      this.description = args.caption;
+      this.photo_url = "http://".concat(window.location.host, "/").concat(args.photo);
+      this.add = 1;
+      this.addChoice = "album";
+    }
+  }, {
+    key: "updateService",
+    value: function updateService(args) {
+      this.id = args.id;
+      this.title = args.name;
+      this.description = args.description;
+      this.photo_url = "http://".concat(window.location.host, "/").concat(args.image);
+      this.add = 1;
+      this.addChoice = "service";
+    }
+  }, {
+    key: "updateVision",
+    value: function updateVision(args) {
+      this.id = args.id;
+      this.title = args.title;
+      this.description = args.caption;
+      this.photo_url = args.image;
+      this.add = 1;
+      this.addChoice = "vision";
+    }
+  }, {
+    key: "updateTestimonials",
+    value: function updateTestimonials(args) {
+      this.id = args.id;
+      this.title = args.name;
+      this.description = args.comment;
+      this.from = args.from;
+      this.photo_url = "http://".concat(window.location.host, "/").concat(args.avatar);
+      this.add = 1;
+      this.addChoice = "testimoni";
     } // add this is controller open and close modal
 
   }, {
@@ -3312,6 +3430,10 @@ var __decorate = this && this.__decorate || function (decorators, target, key, d
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
+var __metadata = this && this.__metadata || function (k, v) {
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -3344,6 +3466,11 @@ var DashboardVision = /*#__PURE__*/function (_vue_1$default) {
   }
 
   _createClass(DashboardVision, [{
+    key: "updateVision",
+    value: function updateVision(args) {
+      this.$emit("updateVision", args);
+    }
+  }, {
     key: "clickDropdown",
     value: function clickDropdown(args) {
       if (this.dropdown) {
@@ -3355,6 +3482,8 @@ var DashboardVision = /*#__PURE__*/function (_vue_1$default) {
       } else {
         this.dropdown = args;
       }
+
+      console.log(this.dropdown);
     }
   }, {
     key: "clickDestroy",
@@ -3386,6 +3515,8 @@ var DashboardVision = /*#__PURE__*/function (_vue_1$default) {
 
   return DashboardVision;
 }(vue_1["default"]);
+
+__decorate([vue_property_decorator_1.Emit(), __metadata("design:type", Function), __metadata("design:paramtypes", [Object]), __metadata("design:returntype", void 0)], DashboardVision.prototype, "updateVision", null);
 
 DashboardVision = __decorate([vue_property_decorator_1.Component({
   computed: _objectSpread({}, vuex_1.mapGetters(["listVision"]))
@@ -7499,6 +7630,78 @@ module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u
 
 /***/ }),
 
+/***/ "./node_modules/core-js/modules/es.array.concat.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.concat.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
+var isArray = __webpack_require__(/*! ../internals/is-array */ "./node_modules/core-js/internals/is-array.js");
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
+var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js/internals/to-length.js");
+var createProperty = __webpack_require__(/*! ../internals/create-property */ "./node_modules/core-js/internals/create-property.js");
+var arraySpeciesCreate = __webpack_require__(/*! ../internals/array-species-create */ "./node_modules/core-js/internals/array-species-create.js");
+var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+var V8_VERSION = __webpack_require__(/*! ../internals/engine-v8-version */ "./node_modules/core-js/internals/engine-v8-version.js");
+
+var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
+var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
+var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
+
+// We can't use this feature detection in V8 since it causes
+// deoptimization and serious performance degradation
+// https://github.com/zloirock/core-js/issues/679
+var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
+  var array = [];
+  array[IS_CONCAT_SPREADABLE] = false;
+  return array.concat()[0] !== array;
+});
+
+var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
+
+var isConcatSpreadable = function (O) {
+  if (!isObject(O)) return false;
+  var spreadable = O[IS_CONCAT_SPREADABLE];
+  return spreadable !== undefined ? !!spreadable : isArray(O);
+};
+
+var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT;
+
+// `Array.prototype.concat` method
+// https://tc39.es/ecma262/#sec-array.prototype.concat
+// with adding support of @@isConcatSpreadable and @@species
+$({ target: 'Array', proto: true, forced: FORCED }, {
+  // eslint-disable-next-line no-unused-vars -- required for `.length`
+  concat: function concat(arg) {
+    var O = toObject(this);
+    var A = arraySpeciesCreate(O, 0);
+    var n = 0;
+    var i, k, length, len, E;
+    for (i = -1, length = arguments.length; i < length; i++) {
+      E = i === -1 ? O : arguments[i];
+      if (isConcatSpreadable(E)) {
+        len = toLength(E.length);
+        if (n + len > MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
+      } else {
+        if (n >= MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        createProperty(A, n++, E);
+      }
+    }
+    A.length = n;
+    return A;
+  }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/modules/es.array.filter.js":
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es.array.filter.js ***!
@@ -9687,7 +9890,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".nc-logo[data-v-9ce0df2c] {\n  width: 100%;\n  height: 80px;\n  background-size: 100% 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.nc-list-avatar[data-v-9ce0df2c] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 10px 20px 10px 20px;\n  margin: 20px 20px 20px 20px;\n  background-color: #0606060d;\n  border-radius: 15px;\n}\n.nc-list-avatar .nc-list-avatars[data-v-9ce0df2c] {\n  display: flex;\n  align-items: center;\n}\n.nc-list-avatar .nc-list-avatars .nc-list-image[data-v-9ce0df2c] {\n  width: 50px !important;\n  height: 50px !important;\n  background-size: cover;\n  border-radius: 10px;\n  background-position: center;\n  background-repeat: no-repeat;\n  margin-right: 10px;\n}\n.nc-list-avatar .nc-list-avatars .nc-list-author[data-v-9ce0df2c] {\n  display: flex;\n  flex-direction: column;\n  line-height: 18px;\n  cursor: default;\n}\n.nc-list-avatar .nc-list-avatars .nc-list-author a[data-v-9ce0df2c] {\n  cursor: default;\n  text-decoration: none;\n  color: black;\n  font-weight: bold;\n}\n.nc-list-avatar .nc-list-avatars .nc-list-author span[data-v-9ce0df2c] {\n  color: #06060678;\n  font-weight: bold;\n}\n.nc-list-avatar i[data-v-9ce0df2c] {\n  width: 32px;\n  height: 32px;\n  background-color: #38c172;\n  color: white;\n  box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 10px;\n  cursor: pointer;\n}\n.nc-list .nc-list-title[data-v-9ce0df2c] {\n  font-family: \"Josefin Sans\", sans-serif;\n  text-transform: uppercase;\n  font-weight: bold;\n  margin-left: 20px;\n}\n.nc-list .nc-list-menu[data-v-9ce0df2c] {\n  margin-top: 15px;\n  display: flex;\n  flex-direction: column;\n}\n.nc-list .nc-list-menu a[data-v-9ce0df2c] {\n  align-items: center;\n  text-decoration: none;\n  font-family: \"Josefin Sans\", sans-serif;\n  font-weight: bold;\n  display: flex;\n  padding: 0px 20px 0px 20px;\n  height: 40px;\n  color: #637381;\n}\n.nc-list .nc-list-menu a span[data-v-9ce0df2c] {\n  width: 60%;\n  padding: 0px 0px 0px 15px;\n}\n.nc-list .nc-list-menu a[data-v-9ce0df2c]:hover {\n  background-color: #06060605;\n  border-right: solid 2px #0606061f;\n}\n.nc-list .nc-list-menu a i[data-v-9ce0df2c] {\n  width: 30px;\n  height: 30px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: transparent;\n  border-radius: 10px;\n}\n.nc-list .nc-list-menu #active[data-v-9ce0df2c] {\n  transition: 250ms ease-in;\n  color: #38c172;\n  border-right: solid 2px #38c172;\n  background-color: #38c1721f;\n}\n.nc-list .nc-list-menu button[data-v-9ce0df2c] {\n  border: none;\n  outline: none;\n  cursor: pointer;\n  padding: 7px 30px 7px 30px;\n  background-color: white;\n  color: #38c172;\n  font-weight: bold;\n  width: 80%;\n  border-top-right-radius: 15px;\n  border-bottom-right-radius: 15px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  border-right: solid 2px #38c172;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".nc-logo[data-v-9ce0df2c] {\n  width: 100%;\n  height: 80px;\n  background-size: 100% 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.nc-list-avatar[data-v-9ce0df2c] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 10px 20px 10px 20px;\n  margin: 20px 20px 20px 20px;\n  background-color: #0606060d;\n  border-radius: 15px;\n}\n.nc-list-avatar .nc-list-avatars[data-v-9ce0df2c] {\n  display: flex;\n  align-items: center;\n}\n.nc-list-avatar .nc-list-avatars .nc-list-image[data-v-9ce0df2c] {\n  width: 50px !important;\n  height: 50px !important;\n  background-size: cover;\n  border-radius: 10px;\n  background-position: center;\n  background-repeat: no-repeat;\n  margin-right: 10px;\n}\n.nc-list-avatar .nc-list-avatars .nc-list-author[data-v-9ce0df2c] {\n  display: flex;\n  flex-direction: column;\n  line-height: 18px;\n  cursor: default;\n}\n.nc-list-avatar .nc-list-avatars .nc-list-author a[data-v-9ce0df2c] {\n  cursor: default;\n  text-decoration: none;\n  color: black;\n  font-weight: bold;\n}\n.nc-list-avatar .nc-list-avatars .nc-list-author span[data-v-9ce0df2c] {\n  color: #06060678;\n  font-weight: bold;\n}\n.nc-list-avatar i[data-v-9ce0df2c] {\n  width: 32px;\n  height: 32px;\n  background-color: #38c172;\n  color: white;\n  box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 10px;\n  cursor: pointer;\n}\n.nc-list .nc-list-title[data-v-9ce0df2c] {\n  font-family: \"Josefin Sans\", sans-serif;\n  text-transform: uppercase;\n  font-weight: bold;\n  margin-left: 20px;\n}\n.nc-list .nc-list-menu[data-v-9ce0df2c] {\n  margin-top: 15px;\n  display: flex;\n  flex-direction: column;\n}\n.nc-list .nc-list-menu a[data-v-9ce0df2c] {\n  align-items: center;\n  text-decoration: none;\n  font-family: \"Josefin Sans\", sans-serif;\n  font-weight: bold;\n  display: flex;\n  padding: 0px 20px 0px 20px;\n  height: 40px;\n  color: #637381;\n}\n.nc-list .nc-list-menu a span[data-v-9ce0df2c] {\n  width: 60%;\n  padding: 0px 0px 0px 15px;\n}\n.nc-list .nc-list-menu a[data-v-9ce0df2c]:hover {\n  background-color: #06060605;\n  border-right: solid 2px #0606061f;\n}\n.nc-list .nc-list-menu a i[data-v-9ce0df2c] {\n  width: 30px;\n  height: 30px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: transparent;\n  border-radius: 10px;\n}\n.nc-list .nc-list-menu #active[data-v-9ce0df2c] {\n  transition: 250ms ease-in;\n  color: #38c172;\n  border-right: solid 2px #38c172;\n  background-color: #38c1721f;\n}\n.nc-list .nc-list-menu .nc-dashboard-btn-default[data-v-9ce0df2c] {\n  border: none;\n  outline: none;\n  cursor: pointer;\n  padding: 7px 30px 7px 30px;\n  background-color: white;\n  color: #38c172;\n  font-weight: bold;\n  width: 80%;\n  border-top-right-radius: 15px;\n  border-bottom-right-radius: 15px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  border-right: solid 2px #38c172;\n  margin-bottom: 5px;\n}\n.nc-list .nc-list-menu .nc-dashborad-btn-back[data-v-9ce0df2c] {\n  margin-bottom: 5px;\n  border: none;\n  outline: none;\n  cursor: pointer;\n  padding: 7px 30px 7px 30px;\n  background-color: white;\n  color: #38c172;\n  font-weight: bold;\n  width: 80%;\n  border-top-right-radius: 15px;\n  border-bottom-right-radius: 15px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);\n  border-right: solid 2px #38c172;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12494,6 +12697,7 @@ var render = function() {
         _c(
           "button",
           {
+            staticClass: "nc-dashboard-btn-default",
             on: {
               click: function($event) {
                 return _vm.clickAdd()
@@ -12503,6 +12707,22 @@ var render = function() {
           [
             _vm._v("\n        Add\n        "),
             _c("i", { staticClass: "fas fa-plus" })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "nc-dashborad-btn-back",
+            on: {
+              click: function($event) {
+                return _vm.clickDefault()
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fas fa-arrow-left" }),
+            _vm._v("Back\n      ")
           ]
         )
       ])
@@ -12563,13 +12783,37 @@ var render = function() {
     { staticClass: "nc-col" },
     [
       _vm.choice === "album"
-        ? _c("album")
+        ? _c("album", {
+            on: {
+              updateAlbum: function($event) {
+                return _vm.updateAlbum($event)
+              }
+            }
+          })
         : _vm.choice === "vision"
-        ? _c("vision")
+        ? _c("vision", {
+            on: {
+              updateVision: function($event) {
+                return _vm.updateVision($event)
+              }
+            }
+          })
         : _vm.choice === "service"
-        ? _c("service")
+        ? _c("service", {
+            on: {
+              updateService: function($event) {
+                return _vm.updateService($event)
+              }
+            }
+          })
         : _vm.choice === "testimoni"
-        ? _c("testimonials")
+        ? _c("testimonials", {
+            on: {
+              updateTestimonials: function($event) {
+                return _vm.updateTestimonials($event)
+              }
+            }
+          })
         : _vm._e()
     ],
     1
@@ -12612,7 +12856,17 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "nc-album-card-group" }, [
-                _vm._m(0, true),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.updateAlbum(items)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fas fa-edit" })]
+                ),
                 _c(
                   "button",
                   {
@@ -12643,14 +12897,7 @@ var render = function() {
     0
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", [_c("i", { staticClass: "fas fa-edit" })])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -12683,7 +12930,17 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "nc-service-card-content" }, [
             _c("div", { staticClass: "nc-service-card-group" }, [
-              _c("button", [_vm._v("Edit")]),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateService(items)
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              ),
               _vm._v(" "),
               _c(
                 "button",
@@ -12765,7 +13022,18 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "nc-testimonials-dropdown-menu" }, [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Edit")]),
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          return _vm.updateTestimonials(items)
+                        }
+                      }
+                    },
+                    [_vm._v("Edit")]
+                  ),
                   _vm._v(" "),
                   _c(
                     "a",
@@ -12851,7 +13119,23 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("right", { attrs: { choice: _vm.choiceScreen } })
+          _c("right", {
+            attrs: { choice: _vm.choiceScreen },
+            on: {
+              updateAlbum: function($event) {
+                return _vm.updateAlbum($event)
+              },
+              updateService: function($event) {
+                return _vm.updateService($event)
+              },
+              updateTestimonials: function($event) {
+                return _vm.updateTestimonials($event)
+              },
+              updateVision: function($event) {
+                return _vm.updateVision($event)
+              }
+            }
+          })
         ],
         1
       ),
@@ -13187,7 +13471,17 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "nc-vision-dropdown-menu" }, [
-                        _c("a", [_vm._v("Edit")]),
+                        _c(
+                          "a",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.updateVision(items)
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
                         _vm._v(" "),
                         _c(
                           "a",

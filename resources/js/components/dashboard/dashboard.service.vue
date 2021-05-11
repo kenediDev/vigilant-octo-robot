@@ -5,7 +5,7 @@
         <img :src="items.image" alt="" />
         <div class="nc-service-card-content">
           <div class="nc-service-card-group">
-            <button>Edit</button>
+            <button @click="updateService(items)">Edit</button>
             <button @click="clickDestroy(items.id)">Hapus</button>
           </div>
           <div class="nc-service-card-title">
@@ -21,8 +21,9 @@
 <script lang="ts">
 import { AxiosResponse } from "axios";
 import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Emit } from "vue-property-decorator";
 import { mapGetters } from "vuex";
+import { Service } from "../../store/types/interface";
 
 @Component({
   computed: {
@@ -30,6 +31,10 @@ import { mapGetters } from "vuex";
   },
 })
 export default class DashboardService extends Vue {
+  @Emit()
+  updateService(args: Service) {
+    this.$emit("updateService", args);
+  }
   clickDestroy(args: string) {
     this.$store
       .dispatch("destroyService", args)

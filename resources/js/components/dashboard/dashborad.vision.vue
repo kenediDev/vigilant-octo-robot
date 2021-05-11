@@ -16,7 +16,7 @@
               "
             >
               <div class="nc-vision-dropdown-menu">
-                <a>Edit</a>
+                <a @click="updateVision(items)">Edit</a>
                 <a @click="clickDestroy(items.id)">Hapus</a>
               </div>
             </div>
@@ -42,8 +42,9 @@
 <script lang="ts">
 import { AxiosResponse } from "axios";
 import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Emit } from "vue-property-decorator";
 import { mapGetters } from "vuex";
+import { Vision } from "../../store/types/interface";
 
 @Component({
   computed: {
@@ -52,6 +53,11 @@ import { mapGetters } from "vuex";
 })
 export default class DashboardVision extends Vue {
   dropdown: number = 0;
+
+  @Emit()
+  updateVision(args: Vision) {
+    this.$emit("updateVision", args);
+  }
   clickDropdown(args: number) {
     if (this.dropdown) {
       if (this.dropdown !== args) {
@@ -62,6 +68,7 @@ export default class DashboardVision extends Vue {
     } else {
       this.dropdown = args;
     }
+    console.log(this.dropdown)
   }
   clickDestroy(args: number) {
     this.$store

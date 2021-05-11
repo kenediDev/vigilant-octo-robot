@@ -7,7 +7,7 @@
           :style="'background-image:url(' + items.photo + ');'"
         >
           <div class="nc-album-card-group">
-            <button><i class="fas fa-edit"></i></button
+            <button @click="updateAlbum(items)"><i class="fas fa-edit"></i></button
             ><button @click="clickDestroy(items.id)">
               <i class="fas fa-trash"></i>
             </button>
@@ -27,8 +27,9 @@
 <script lang="ts">
 import { AxiosResponse } from "axios";
 import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Emit } from "vue-property-decorator";
 import { mapGetters } from "vuex";
+import { Album } from "../../store/types/interface";
 
 @Component({
   computed: {
@@ -36,6 +37,10 @@ import { mapGetters } from "vuex";
   },
 })
 export default class DashboardAlbum extends Vue {
+  @Emit()
+  updateAlbum(args: Album) {
+    this.$emit("updateAlbum", args)
+  }
   clickDestroy(args: number) {
     this.$store
       .dispatch("destroyAlbum", args)
