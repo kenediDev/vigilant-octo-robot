@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosPromise, AxiosResponse } from "axios";
 import { origin } from "../prefix/cors";
 import { Service, ServiceState, Update } from "../types/interface";
 
@@ -33,22 +33,27 @@ const actions = {
         });
     },
     async listService({ commit }: any) {
-        return await axios.get("/api/v1/service", {
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers":
-                    "Content-Type, Origin, Accepted, X-Requested-With",
-                "Access-Control-Allow-origin": origin
-            },
-            timeout: 865000,
-            responseType: "json",
-            withCredentials: false,
-            maxBodyLength: 2000,
-            maxContentLength: 2000,
-            maxRedirects: 5,
-            validateStatus: (status: number) => status >= 200 && status < 300
-        });
+        return await axios
+            .get("/api/v1/service", {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers":
+                        "Content-Type, Origin, Accepted, X-Requested-With",
+                    "Access-Control-Allow-origin": origin
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: false,
+                maxBodyLength: 2000,
+                maxContentLength: 2000,
+                maxRedirects: 5,
+                validateStatus: (status: number) =>
+                    status >= 200 && status < 300
+            })
+            .then((res: AxiosResponse<any>) => {
+                commit("listService", res.data);
+            });
     },
     async putService({ commit }: any, args: Update) {
         return await axios.post(`/api/v1/service/${args.id}/`, args.data, {
@@ -69,7 +74,7 @@ const actions = {
             validateStatus: (status: number) => status >= 200 && status < 300
         });
     },
-    async deleteDestroy({ commit }: any, args: number) {
+    async destroyService({ commit }: any, args: number) {
         return await axios.delete(`/api/v1/service/${args}`, {
             headers: {
                 "Content-Type": "application/json",
@@ -92,7 +97,7 @@ const actions = {
 const mutations = {
     addService: (results: ServiceState, data: Service) =>
         results.service.unshift(data),
-    listService: (results: ServiceState, data: any) => (results.data = data),
+    listService: (results: ServiceState, data: any) => (results.service = data),
     destroyService: (results: ServiceState, args: number) =>
         (results.service = results.service.filter(function(x) {
             return x.id !== args;

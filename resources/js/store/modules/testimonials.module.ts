@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { origin } from "../prefix/cors";
 import { Testimonials, TestimonialsState, Update } from "../types/interface";
 
@@ -49,6 +49,8 @@ const actions = {
             maxContentLength: 2000,
             maxRedirects: 5,
             validateStatus: (status: number) => status >= 200 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            commit('listTestimonials', res.data)
         });
     },
     async destroyTestimonials({ commit }: any, args: number) {

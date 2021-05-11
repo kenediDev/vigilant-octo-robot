@@ -26,11 +26,15 @@ export default class BaseComponent extends Vue {
     }
   }
   beforeMount() {
+    this.$store.dispatch("listService");
+    this.$store.dispatch("listAlbum");
+    this.$store.dispatch("listTestimonials");
+    this.$store.dispatch("listVision");
     this.$store.dispatch("loadMe");
     this.$router.push({ name: "dashboard" });
     localStorage.setItem(
       "token",
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aCIsImlhdCI6MTYyMDY3MjQxNywiZXhwIjoxNjIwNjc2MDE3LCJuYmYiOjE2MjA2NzI0MTcsImp0aSI6Ik9EZVRpQnBlREIzSDVBYzgiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.8ua4R9IAXjuJgjRXH1EUOfcLobbUAPLPY7EGtItALhg"
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aCIsImlhdCI6MTYyMDczMjE2MCwiZXhwIjoxNjIwNzM1NzYwLCJuYmYiOjE2MjA3MzIxNjAsImp0aSI6InZxYWc3N2cwZGRnaVRHOGYiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.8c7GjoO1C-PdMkbDMCV38LqW3398CXOdUtep0uZDeVk"
     );
   }
 }
@@ -39,4 +43,5 @@ export default class BaseComponent extends Vue {
 <style lang="scss" scoped>
 @import url("https://use.fontawesome.com/releases/v5.15.3/css/all.css");
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans+Condensed&display=swap');
 </style>

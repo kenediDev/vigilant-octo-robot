@@ -20,7 +20,7 @@ class AlbumController extends Controller
             return response()->json(false, 401);
         }
         $val = Validator::make($request->all(), [
-            'title' => 'max:225',
+            'title' => 'required|max:225',
             'caption' => 'required',
             'photo' => 'required'
         ]);

@@ -18,19 +18,35 @@
       </div>
       <div class="nc-list-title">Dashboard</div>
       <div class="nc-list-menu">
-        <a href="" id="active">
+        <a
+          href="#"
+          @click="changeChoiceScreen('service')"
+          :id="choice === 'service' ? 'active' : ''"
+        >
           <i class="fas fa-cog"></i>
           <span>Service</span>
         </a>
-        <a href="">
+        <a
+          href="#"
+          @click="changeChoiceScreen('album')"
+          :id="choice === 'album' ? 'active' : ''"
+        >
           <i class="fas fa-images"></i>
           <span>Album</span>
         </a>
-        <a href="">
+        <a
+          href="#"
+          @click="changeChoiceScreen('vision')"
+          :id="choice === 'vision' ? 'active' : ''"
+        >
           <i class="fas fa-book"></i>
           <span>Visi</span>
         </a>
-        <a href="">
+        <a
+          href="#"
+          @click="changeChoiceScreen('testimoni')"
+          :id="choice === 'testimoni' ? 'active' : ''"
+        >
           <i class="fas fa-paperclip"></i>
           <span>Testimoni</span>
         </a>
@@ -50,10 +66,16 @@ import { Component, Emit, Prop } from "vue-property-decorator";
 @Component({})
 export default class LeftColumn extends Vue {
   @Prop(String) logo: string;
+  @Prop(String) choice: string;
 
   @Emit()
   clickAdd() {
     this.$emit("clickAdd");
+  }
+
+  @Emit()
+  changeChoiceScreen(args: string) {
+    this.$emit("changeChoiceScreen", args);
   }
 }
 </script>
@@ -160,6 +182,7 @@ export default class LeftColumn extends Vue {
       }
     }
     #active {
+      transition: 250ms ease-in;
       color: #38c172;
       border-right: solid 2px #38c172;
       background-color: #38c1721f;

@@ -85,3 +85,32 @@ export interface Update {
     id: number;
     data: FormData;
 }
+
+export interface ValidationAlbum {
+    message: string;
+    photo: any[];
+    caption: any[];
+    title: any[];
+}
+
+export interface ValidationService {
+    message: string;
+    name: any[];
+    description: any[];
+    image: any[];
+}
+
+export interface ValidationTestimonials {
+    message: string;
+    avatar: any[];
+    name: any[];
+    comment: any[];
+    from: any[];
+}
+
+export interface ValidationVision {
+    message: string;
+    title: any[];
+    image: any[];
+    caption: any[];
+}

@@ -35,7 +35,9 @@
           Testimoni
         </button>
       </div>
-      <button class="nc-modal-times"><i class="fas fa-times"></i></button>
+      <button class="nc-modal-times" @click="clickAdd()">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
     <form @submit.prevent="submit">
       <div class="nc-field" id="nc-field-file">
@@ -100,6 +102,7 @@
 import { AxiosResponse } from "axios";
 import Vue from "vue";
 import { Component, Emit, Prop } from "vue-property-decorator";
+import { AlValidator } from "../../store/utils/validator";
 
 @Component({})
 export default class DashboardModal extends Vue {
@@ -192,7 +195,7 @@ export default class DashboardModal extends Vue {
             window.location.reload();
           }
           this.$store.commit("MESSAGE", {
-            message: err.response.data.message,
+            message: AlValidator.album(err.response.data),
             valid: 2,
           });
         });
@@ -223,7 +226,7 @@ export default class DashboardModal extends Vue {
             window.location.reload();
           }
           this.$store.commit("MESSAGE", {
-            message: err.response.data.message,
+            message: AlValidator.service(err.response.data),
             valid: 2,
           });
         });
@@ -247,6 +250,10 @@ export default class DashboardModal extends Vue {
           localStorage.clear();
           window.location.reload();
         }
+        this.$store.commit("MESSAGE", {
+          message: AlValidator.vision(err.response.data),
+          valid: 2,
+        });
       });
   }
   testimonials() {
@@ -274,7 +281,7 @@ export default class DashboardModal extends Vue {
             window.location.reload();
           }
           this.$store.commit("MESSAGE", {
-            message: err.response.data.message,
+            message: AlValidator.testimonials(err.response.data),
             valid: 2,
           });
         });

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Album, AlbumState, Update } from "../types/interface";
 
 const state: AlbumState = {
@@ -37,8 +37,7 @@ const actions = {
                 "Access-Control-Allow-Methods": "GET",
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers":
-                    "Content-Type, Origin, Accepted, X-Requested-With, Authorization",
-                Authorization: `Bearer ${localStorage.getItem("token")}`
+                    "Content-Type, Origin, Accepted, X-Requested-With, Authorization"
             },
             timeout: 856000,
             responseType: "json",
@@ -46,7 +45,9 @@ const actions = {
             maxBodyLength: 2000,
             maxContentLength: 2000,
             maxRedirects: 5,
-            validateStatus: (status: number) => status >= 201 && status < 300
+            validateStatus: (status: number) => status >= 200 && status < 300
+        }).then((res: AxiosResponse<any>) => {
+            commit("listAlbum", res.data)
         });
     },
     async destroyAlbum({ commit }: any, args: string) {
@@ -98,5 +99,7 @@ const mutations = {
     putAlbum: (results: AlbumState, data: Album) =>
         (results.album = results.album.map(x => (x.id === data.id ? data : x)))
 };
-const getters = {};
+const getters = {
+    listAlbum: (results: AlbumState) => results.album
+};
 export default { state, actions, mutations, getters };

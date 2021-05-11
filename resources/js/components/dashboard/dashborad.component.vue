@@ -1,8 +1,13 @@
 <template>
   <div>
     <div class="nc-grid">
-      <left :logo="logo" v-on:clickAdd="clickAdd()" />
-      <right />
+      <left
+        :logo="logo"
+        v-on:clickAdd="clickAdd()"
+        v-on:changeChoiceScreen="changeChoiceScreen($event)"
+        :choice="choiceScreen"
+      />
+      <right :choice="choiceScreen" />
     </div>
     <modal
       :add="add"
@@ -48,8 +53,13 @@ export default class DashboardComponent extends Vue {
   description: string = "";
   photo: any = "";
   photo_url: any = "";
+  choiceScreen: string = "testimoni";
   plus: string =
     "https://icons.iconarchive.com/icons/icons8/ios7/256/User-Interface-Plus-icon.png";
+
+  changeChoiceScreen(args: string) {
+    this.choiceScreen = args;
+  }
 
   clearInput() {
     this.id = 0;
@@ -104,6 +114,13 @@ export default class DashboardComponent extends Vue {
       -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
       -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
       background-color: white;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 10px;
+    }
+    &:last-child {
+      width: 76%;
+      margin-left: 15px;
     }
   }
 }
