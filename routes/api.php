@@ -82,4 +82,5 @@ Route::group([
     'prefix' => 'v1/default'
 ], function () {
     Route::get('', [DefaultController::class, 'listImage']);
+    Route::get('product/', [DefaultController::class, 'listProduct']);
 });

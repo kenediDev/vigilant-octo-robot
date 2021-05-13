@@ -31,6 +31,9 @@ export default class NavbarComponent extends Vue {
 .nc-navbar {
   position: sticky;
   position: -webkit-sticky;
+  box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
   top: 0;
   display: flex;
   align-items: center;
@@ -46,7 +49,7 @@ export default class NavbarComponent extends Vue {
     align-items: center;
     a {
       margin: 0px 10px 0px 10px;
-      color: #e3932f;
+      color: #38c172;
       font-weight: bold;
       text-decoration: none;
     }
@@ -60,7 +63,7 @@ export default class NavbarComponent extends Vue {
       border: none;
       outline: none;
       background-color: transparent;
-      color: #e3932f;
+      color: #38c172;
       text-transform: capitalize;
       font-weight: bold;
       width: 100px;
@@ -71,11 +74,11 @@ export default class NavbarComponent extends Vue {
       border-radius: 15px;
       i {
         margin-left: 10px;
-        color: #e3932f;
+        color: #38c172;
       }
       transition: 500ms ease-in-out;
       &:hover {
-        background-color: #e3932f;
+        background-color: #38c172;
         color: white;
         i {
           color: white;
@@ -99,7 +102,7 @@ export default class NavbarComponent extends Vue {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #e3932f;
+    background-color: #38c172;
     color: white;
     box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);

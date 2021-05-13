@@ -3,6 +3,7 @@
     <navbar v-if="activeNavbar" />
     <router-view></router-view>
     <message />
+    <footers />
   </div>
 </template>
 
@@ -11,11 +12,13 @@ import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import navbar from "./navbar.componen.vue";
 import message from "./validation/message.vue";
+import footers from "./footer.component.vue";
 
 @Component({
   components: {
     navbar,
     message,
+    footers,
   },
 })
 export default class BaseComponent extends Vue {
@@ -27,6 +30,7 @@ export default class BaseComponent extends Vue {
     this.$store.dispatch("listVision");
     this.$store.dispatch("loadMe");
     this.$store.dispatch("listAttribute");
+    this.$store.dispatch("listProduct");
   }
   beforeMount() {
     if (this.$route.name === "dashboard") {
@@ -57,7 +61,8 @@ export default class BaseComponent extends Vue {
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Merriweather&family=PT+Sans+Narrow&family=Passion+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Holtwood+One+SC&family=Knewave&family=Metrophobic&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Assistant&family=Fjalla+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bungee+Shade&family=Erica+One&family=Modak&family=Sofadi+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Holtwood+One+SC&family=Knewave&family=Metrophobic&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Assistant&family=Fjalla+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bungee+Shade&family=Erica+One&family=Modak&family=Sofadi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Farro&display=swap");
 </style>

@@ -117,4 +117,5 @@ export interface ValidationVision {
 
 export interface DefaultState {
     attribute: any[];
+    product: any[];
 }
