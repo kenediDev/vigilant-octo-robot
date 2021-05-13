@@ -65,7 +65,7 @@ export default class DashboardComponent extends Vue {
   description: string = "";
   photo: any = "";
   photo_url: any = "";
-  choiceScreen: string = "testimoni";
+  choiceScreen: string = "";
   plus: string =
     "https://icons.iconarchive.com/icons/icons8/ios7/256/User-Interface-Plus-icon.png";
 
@@ -158,7 +158,7 @@ export default class DashboardComponent extends Vue {
   .nc-col {
     height: 100vh;
     &:first-child {
-      width: 300px;
+      width: 400px;
       box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
       -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
       -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
@@ -168,8 +168,7 @@ export default class DashboardComponent extends Vue {
       top: 10px;
     }
     &:last-child {
-      width: 76%;
-      margin-left: 15px;
+      width: 100%;
     }
   }
 }

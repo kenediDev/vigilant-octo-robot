@@ -114,3 +114,7 @@ export interface ValidationVision {
     image: any[];
     caption: any[];
 }
+
+export interface DefaultState {
+    attribute: any[];
+}

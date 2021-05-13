@@ -5,6 +5,7 @@ import VisionModules from "./modules/vision.modules";
 import ServiceModules from "./modules/service.modules";
 import AlbumModules from "./modules/album.modules";
 import TestimonialsModules from "./modules/testimonials.module";
+import DefaultModules from "./modules/default.modules";
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
         VisionModules,
         ServiceModules,
         AlbumModules,
-        TestimonialsModules
+        TestimonialsModules,
+        DefaultModules
     }
 });

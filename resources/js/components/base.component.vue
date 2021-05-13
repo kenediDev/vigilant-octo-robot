@@ -21,21 +21,31 @@ import message from "./validation/message.vue";
 export default class BaseComponent extends Vue {
   activeNavbar: boolean = false;
   beforeCreate() {
-    if (this.$route.name === "dashboard") {
-      this.activeNavbar = true;
-    }
-  }
-  beforeMount() {
     this.$store.dispatch("listService");
     this.$store.dispatch("listAlbum");
     this.$store.dispatch("listTestimonials");
     this.$store.dispatch("listVision");
     this.$store.dispatch("loadMe");
-    this.$router.push({ name: "dashboard" });
-    localStorage.setItem(
-      "token",
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aCIsImlhdCI6MTYyMDczMjE2MCwiZXhwIjoxNjIwNzM1NzYwLCJuYmYiOjE2MjA3MzIxNjAsImp0aSI6InZxYWc3N2cwZGRnaVRHOGYiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.8c7GjoO1C-PdMkbDMCV38LqW3398CXOdUtep0uZDeVk"
-    );
+    this.$store.dispatch("listAttribute");
+  }
+  beforeMount() {
+    if (this.$route.name === "dashboard") {
+      this.activeNavbar = false;
+    } else {
+      this.activeNavbar = true;
+    }
+    // this.$router.push({ name: "dashboard" });
+    // localStorage.setItem(
+    //   "token",
+    //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aCIsImlhdCI6MTYyMDgwMjk2NiwiZXhwIjoxNjIwODA2NTY2LCJuYmYiOjE2MjA4MDI5NjYsImp0aSI6Ill4Q3BvaXJNUW1BeHJFNVAiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.eTSi0bM3ut5cI6BhADiRPKm90ZRpnQ4suXviK-wci5k"
+    // );
+  }
+  beforeUpdate() {
+    if (this.$route.name === "dashboard") {
+      this.activeNavbar = false;
+    } else {
+      this.activeNavbar = true;
+    }
   }
 }
 </script>
@@ -43,5 +53,11 @@ export default class BaseComponent extends Vue {
 <style lang="scss" scoped>
 @import url("https://use.fontawesome.com/releases/v5.15.3/css/all.css");
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans+Condensed&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Merriweather&family=PT+Sans+Narrow&family=Passion+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Holtwood+One+SC&family=Knewave&family=Metrophobic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant&family=Fjalla+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Assistant&family=Fjalla+One&display=swap');
 </style>

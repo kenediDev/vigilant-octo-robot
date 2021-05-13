@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\VisionController;
@@ -73,4 +74,12 @@ Route::group([
     Route::get('', [TestimonialsController::class, 'list']);
     Route::post('{id}', [TestimonialsController::class, 'put']);
     Route::delete('{id}', [TestimonialsController::class, 'destroy']);
+});
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'v1/default'
+], function () {
+    Route::get('', [DefaultController::class, 'listImage']);
 });
