@@ -46,8 +46,9 @@ export default class NavbarComponent extends Vue {
     align-items: center;
     a {
       margin: 0px 10px 0px 10px;
-      color: #38c172;
+      color: #e3932f;
       font-weight: bold;
+      text-decoration: none;
     }
     .nc-divider {
       width: 2px;
@@ -59,7 +60,7 @@ export default class NavbarComponent extends Vue {
       border: none;
       outline: none;
       background-color: transparent;
-      color: #38c172;
+      color: #e3932f;
       text-transform: capitalize;
       font-weight: bold;
       width: 100px;
@@ -70,11 +71,11 @@ export default class NavbarComponent extends Vue {
       border-radius: 15px;
       i {
         margin-left: 10px;
-        color: #38c172;
+        color: #e3932f;
       }
       transition: 500ms ease-in-out;
       &:hover {
-        background-color: #38c722;
+        background-color: #e3932f;
         color: white;
         i {
           color: white;
@@ -98,7 +99,7 @@ export default class NavbarComponent extends Vue {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #38c722;
+    background-color: #e3932f;
     color: white;
     box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);

@@ -59,5 +59,5 @@ export default class BaseComponent extends Vue {
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Holtwood+One+SC&family=Knewave&family=Metrophobic&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Assistant&family=Fjalla+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Assistant&family=Fjalla+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bungee+Shade&family=Erica+One&family=Modak&family=Sofadi+One&display=swap');
 </style>
