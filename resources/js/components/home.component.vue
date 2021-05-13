@@ -125,6 +125,12 @@
         </div>
       </div>
     </div>
+    <div class="nc-section-history">Cerita Kami</div>
+    <ul>
+      <li v-for="(items, index) in listAlbum" :key="index">
+        <img :src="items.photo" alt="" />
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -141,6 +147,7 @@ import { mapGetters } from "vuex";
       "listDefault",
       "listTestimonials",
       "listVision",
+      "listAlbum",
     ]),
   },
 })
@@ -601,19 +608,75 @@ export default class HomeComponent extends Vue {}
   }
 }
 
-// <div class="nc-section-vision">
-//       <div class="nc-section-visions">
-//         <div v-for="(items, index) in listVision" :key="index">
-//           <div class="nc-section-vision-card">
-//             <div class="nc-section-vision-title">
-//               {{ items.title }}
-//             </div>
-//             <img :src="items.image" alt="" />
-//             <div class="nc-section-vision-description">
-//               {{ items.caption }}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
+// BASIC
+
+.nc-section-history {
+  text-align: center;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  background-color: white;
+  font-size: 30px;
+  cursor: default;
+  font-weight: bold;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  height: 40vh;
+  flex-grow: 1;
+  img {
+    max-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
+  }
+}
+
+li:last-child {
+  // There's no science in using "10" here. In all my testing, this delivered the best results.
+  flex-grow: 10;
+}
+
+// ADVANCED
+
+// Portrait
+
+@media (max-aspect-ratio: 1/1) {
+  li {
+    height: 30vh;
+  }
+}
+
+// Short screens
+
+@media (max-height: 480px) {
+  li {
+    height: 80vh;
+  }
+}
+
+// Smaller screens in portrait
+
+@media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+  ul {
+    flex-direction: row;
+  }
+
+  li {
+    height: auto;
+    width: 100%;
+    img {
+      width: 100%;
+      max-height: 75vh;
+      min-width: 0;
+    }
+  }
+}
 </style>
