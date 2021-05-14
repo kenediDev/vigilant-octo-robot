@@ -4,10 +4,10 @@
       <img :src="logo" alt="" />
       <div class="section-navbar-right">
         <a href="#" @click="clickRouter('home')">Beranda</a>
-        <a href="">Service</a>
-        <a href="">Testimoni</a>
-        <a href="">Tentang Kami</a>
-        <a href="">Kontak</a>
+        <a href="#" @click="clickRouter('service')">Service</a>
+        <a href="#" @click="clickRouter('testimoni')">Testimoni</a>
+        <a href="#" @click="clickRouter('about')">Tentang Kami</a>
+        <a href="#" @click="clickRouter('contact')">Kontak</a>
         <div class="divider"></div>
         <button @click="clickRouter('login')" v-if="!token" class="btn-web">
           <span>Masuk</span><i class="fas fa-arrow-right"></i>
