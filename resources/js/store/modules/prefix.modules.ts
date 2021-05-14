@@ -1,3 +1,5 @@
+import faker from "faker";
+
 const state = {
     choice: [
         {
@@ -68,6 +70,327 @@ const state = {
             url:
                 "https://cdn.shortpixel.ai/client/q_glossy,ret_img/https://1-station.com/wp-content/uploads/2018/12/spooring1.png"
         }
+    ],
+    vision: [
+        {
+            name: "Tentang Kami",
+            url:
+                "https://i2.wp.com/1-station.com/wp-content/uploads/2016/11/Art23646_low.jpg",
+            description:
+                " Station, Ngebengkel Bener! 1 Station berusaha untuk memberikan pengerjaan servis dan perawatan kendaraan terbaik di Indonesia. Toko ban kami juga memiliki layanan lain seperti: paket penggantian oli, penggantian aki, rem dan juga spooring balancing. Dengan jumlah 8 toko di wilayah Jakarta, Tangerang dan Bekasi, anda akan dilayani oleh tim kami yang sudah berpengalaman"
+        },
+        {
+            name: "Visi Kami",
+            url:
+                "https://i2.wp.com/1-station.com/wp-content/uploads/2016/11/Art23610_low.jpg?",
+            description:
+                "Di 1 Station, kami ingin memberikan transparansi, kualitas tinggi dan perawatan mobil yang terjangkau pada pelanggan. Kami ingin membangun hubungan jangka panjang yang berkelanjutan dengan seluruh semua pihak yang berdasarkan pada kepercayaan, dalam arti yang paling murni dari kata tersebut."
+        },
+        {
+            name: "Kesempatan",
+            url:
+                "https://i0.wp.com/1-station.com/wp-content/uploads/2016/11/Kesempatan-berkarir.jpg",
+            description:
+                "Bergabunglah dengan tim profesional 1 Station sekarang juga dengan mengirimkan lamaran pekerjaan ke alamat email : hrd@1-station.co.id"
+        }
+    ],
+    testimoni: [
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            comment: faker.lorem.text(200),
+            date: faker.datatype.datetime()
+        }
+    ],
+    album: [
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        },
+        {
+            image: faker.image.imageUrl()
+        }
     ]
 };
 
@@ -78,7 +401,10 @@ const mutations = {
 
 const getters = {
     choice: (results: any) => results.choice,
-    anotherChoice: (results: any) => results.anotherChoice
+    anotherChoice: (results: any) => results.anotherChoice,
+    listVision: (results: any) => results.vision,
+    listTestimoni: (results: any) => results.testimoni,
+    listAlbum: (results: any) => results.album
 };
 
 export default {

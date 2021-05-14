@@ -2,6 +2,7 @@
   <div>
     <navbars />
     <router-view></router-view>
+    <footers />
     <message />
   </div>
 </template>
@@ -11,11 +12,13 @@ import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import navbars from "./navbar.component.vue";
 import message from "./screen/validation.screen.vue";
+import footers from "./screen/home/footer.component.vue";
 
 @Component({
   components: {
     navbars,
     message,
+    footers,
   },
 })
 export default class BaseComponent extends Vue {

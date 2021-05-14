@@ -6,6 +6,7 @@ import "moment/locale/id";
 import moment from "moment";
 import Vuemoment from "vue-moment";
 
+
 Vue.use(Vuemoment, {
     moment
 });

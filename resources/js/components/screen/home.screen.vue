@@ -32,6 +32,10 @@
     <attribute />
     <choice />
     <product />
+    <benefit />
+    <testimoni />
+    <vision />
+    <album />
   </div>
 </template>
 
@@ -41,12 +45,20 @@ import { Component } from "vue-property-decorator";
 import choice from "./home/reason-choice.component.vue";
 import attribute from "./home/attribute.component.vue";
 import product from "./home/product.component.vue";
+import benefit from "./home/benefit.component.vue";
+import vision from "./home/vision.component.vue";
+import testimoni from "./home/testimonia.component.vue";
+import album from "./home/album.component.vue";
 
 @Component({
   components: {
     choice,
     attribute,
     product,
+    benefit,
+    vision,
+    testimoni,
+    album,
   },
 })
 export default class HomeScreen extends Vue {}

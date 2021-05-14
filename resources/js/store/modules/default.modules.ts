@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 const state = {
     attribute: [],
-    image: []
+    image: [],
 };
 
 const actions = {
