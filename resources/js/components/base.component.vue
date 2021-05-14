@@ -20,14 +20,18 @@ import message from "./screen/validation.screen.vue";
 })
 export default class BaseComponent extends Vue {
   beforeMount() {
-    this.$router.push({ name: "forgot" });
+    if (localStorage.getItem("token")) {
+      this.$store.commit("TOKEN", localStorage.getItem("token"));
+    }
+    this.$store.dispatch("listDefault");
+    this.$store.dispatch("listImage");
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import url("https://use.fontawesome.com/releases/v5.15.3/css/all.css");
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab:wght@400;900&display=swap");
 // font-family: 'Roboto', sans-serif;
+// font-family: 'Roboto Slab', serif;
 </style>

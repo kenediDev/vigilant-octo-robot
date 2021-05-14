@@ -126,4 +126,41 @@ export default class ForgotScreen extends Vue {
     }
   }
 }
+
+@media screen and (max-width: 437px) {
+  .section-forgot {
+    height: 60vh;
+    form {
+      padding: 0;
+      background-color: transparent;
+      #nc-field-input {
+        width: 360px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 381px) {
+  .section-forgot {
+    form {
+      padding: 0;
+      background-color: transparent;
+      #nc-field-input {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .section-forgot {
+    form {
+      padding: 0;
+      background-color: transparent;
+      #nc-field-input {
+        width: 240px;
+      }
+    }
+  }
+}
 </style>

@@ -8,7 +8,7 @@ import DashboardScreen from "../components/screen/dashboard.screen.vue";
 Vue.use(VueRouter);
 
 type RouteName = "home" | "login" | "forgot" | "dashboard";
-type RoutePath = "/home" | "/accounts" | "/forgot-accounts" | "/dashboard";
+type RoutePath = "/" | "/accounts" | "/forgot-accounts" | "/dashboard";
 
 interface Routes {
     name: RouteName;
@@ -19,7 +19,7 @@ interface Routes {
 const routes: Routes[] = [
     {
         name: "home",
-        path: "/home",
+        path: "/",
         component: HomeScreen
     },
     {

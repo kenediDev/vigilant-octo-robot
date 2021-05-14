@@ -3,14 +3,20 @@
     <div class="section-navbar">
       <img :src="logo" alt="" />
       <div class="section-navbar-right">
-        <a href="">Beranda</a>
+        <a href="#" @click="clickRouter('home')">Beranda</a>
         <a href="">Service</a>
         <a href="">Testimoni</a>
         <a href="">Tentang Kami</a>
         <a href="">Kontak</a>
         <div class="divider"></div>
-        <button @click="clickRouter('login')">
+        <button @click="clickRouter('login')" v-if="!token" class="btn-web">
           <span>Masuk</span><i class="fas fa-arrow-right"></i>
+        </button>
+        <button v-else class="bars">
+          <i class="fas fa-bars"></i>
+        </button>
+        <button class="btn-mobile">
+          <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
@@ -20,7 +26,12 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-@Component({})
+import { mapGetters } from "vuex";
+@Component({
+  computed: {
+    ...mapGetters(["token"]),
+  },
+})
 export default class NavbarComponent extends Vue {
   logo: string = `http://${window.location.host}/image/default/Tanpa judul (5).png`;
   clickRouter(args: string) {
@@ -75,6 +86,59 @@ export default class NavbarComponent extends Vue {
       border-radius: 15px;
       i {
         margin-left: 15px;
+      }
+    }
+  }
+}
+
+.bars {
+  width: 32px !important;
+  height: 32px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none !important;
+  &:hover {
+    background-color: white !important;
+    color: rgb(80 173 42) !important;
+  }
+  i {
+    margin: 0 !important;
+    font-size: 18px !important;
+  }
+}
+
+.btn-mobile {
+  display: none;
+  visibility: hidden;
+}
+
+@media screen and (max-width: 757px) {
+  .bars,
+  .btn-web {
+    display: none;
+    visibility: hidden;
+  }
+  .btn-mobile {
+    visibility: visible;
+    display: block;
+    border: none !important;
+    background-color: transparent !important;
+    font-size: 20px;
+    &:hover {
+      background-color: white !important;
+      color: rgb(80 173 42) !important;
+    }
+  }
+  .section-navbar {
+    .section-navbar-right {
+      a {
+        display: none;
+        visibility: hidden;
+      }
+      .divider {
+        display: none;
+        visibility: hidden;
       }
     }
   }

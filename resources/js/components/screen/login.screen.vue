@@ -53,8 +53,8 @@ import { Component } from "vue-property-decorator";
 
 @Component({})
 export default class LoginScreen extends Vue {
-  username: string;
-  password: string;
+  username: string = "";
+  password: string = "";
   submit() {
     this.$store.commit("MESSAGE", { message: "", valid: 3 });
     const data = {
@@ -151,6 +151,43 @@ export default class LoginScreen extends Vue {
         height: 100%;
         border: none;
         outline: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 437px) {
+  .section-auth {
+    height: 60vh;
+    form {
+      padding: 0;
+      background-color: transparent;
+      #nc-field-input {
+        width: 360px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 381px) {
+  .section-auth {
+    form {
+      padding: 0;
+      background-color: transparent;
+      #nc-field-input {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .section-auth {
+    form {
+      padding: 0;
+      background-color: transparent;
+      #nc-field-input {
+        width: 240px;
       }
     }
   }
