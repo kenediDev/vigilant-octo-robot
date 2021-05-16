@@ -4,7 +4,7 @@
       <img :src="logo" alt="" class="navbar-brand" />
       <div class="navbar-top-group">
         <div class="navbar-top-button">
-          <i class="fas fa-map-marker-alt"></i>
+          <icon :src="map" class="icon" />
           <div class="navbar-top-button-group">
             <span class="navbar-top-button-title">Alamat</span>
             <span class="navbar-top-button-description"
@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="navbar-top-button">
-          <i class="fas fa-phone"></i>
+          <icon :src="phone" class="icon" />
           <div class="navbar-top-button-group">
             <span class="navbar-top-button-title">Nomor Telepon</span>
             <span class="navbar-top-button-description" id="phone"
@@ -27,7 +27,7 @@
     </div>
     <div class="navbar">
       <div class="navbar-left">
-        <a href="#" class="web">Beranda</a>
+        <a href="#" class="web" @click="clickRouter('home')">Beranda</a>
         <a href="#" class="web">Service</a>
         <a href="#" class="web">Testimoni</a>
         <a href="#" class="web">Tentang Kami</a>
@@ -72,9 +72,15 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import phone from "./assets/smartphone.svg";
+import map from "./assets/map.svg";
+import bars from "./assets/list.svg";
 
 @Component({})
 export default class NavbarComponent extends Vue {
+  phone = phone;
+  map = map;
+  bars = bars;
   logo: string = `http://${window.location.host}/image/default/Tanpa%20judul%20(5).png`;
   drawer: number = 0;
   clickDrawer() {
@@ -95,6 +101,9 @@ export default class NavbarComponent extends Vue {
 </script>
 
 <style lang="scss" scoped>
+a {
+  text-decoration: none;
+}
 .navbar-top {
   display: flex;
   align-items: center;
@@ -117,17 +126,10 @@ export default class NavbarComponent extends Vue {
       display: flex;
       align-items: center;
       margin-right: 15px;
-      i {
-        font-size: 20px;
-        color: rgb(3, 172, 14);
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: white;
-        border-radius: 10px;
-        margin-right: 15px;
+      .icon {
+        width: 28px;
+        height: 28px;
+        margin-right: 18px;
       }
       .navbar-top-button-group {
         display: flex;

@@ -33,4 +33,18 @@ class DefaultController extends Controller
         }
         return response()->json($array);
     }
+
+    public function listCar(Request $request)
+    {
+        $array = array();
+        $dir = base_path() . '/public/image/service-car';
+        $scan = scandir($dir);;
+        foreach($scan as $dir => $value) {
+            if(!in_array($value, array('..', '.'))) {
+                $url = 'http://' . $request->getHttpHost() . '/image/service-car/' . $value;
+                array_push($array, $url);
+            };
+        }
+        return response()->json($array);
+    }
 }

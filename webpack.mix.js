@@ -43,6 +43,17 @@ mix.js("resources/js/app.ts", "public/js")
                     },
                     exclude: /(node_modules|bower_components)/
                 },
+                {
+                    test: /\.(png|jpg|gif)$/i,
+                    use: [
+                        {
+                            loader: "url-loader",
+                            options: {
+                                limit: 8192
+                            }
+                        }
+                    ]
+                }
                 // {
                 //     test: /\.scss$/,
                 //     use: [

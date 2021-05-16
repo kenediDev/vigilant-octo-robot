@@ -23,7 +23,8 @@ export default class BaseComponent extends Vue {
     this.$router.push({ name: args });
   }
   beforeMount() {
-    this.$router.push({ name: "forgot" });
+    this.$store.dispatch("listCar");
+    this.$store.dispatch("listProduct");
   }
 }
 </script>

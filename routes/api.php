@@ -83,4 +83,5 @@ Route::group([
 ], function () {
     Route::get('', [DefaultController::class, 'listImage']);
     Route::get('product/', [DefaultController::class, 'listProduct']);
+    Route::get('car/', [DefaultController::class, 'listCar']);
 });
