@@ -42,6 +42,9 @@ class AuthController extends Controller
             return response()->json($val->errors(), 400);
         };
         $user = User::where("users.email", "=", $request->email)->first();
+        if(!$user) {
+            return response()->json(['message' => 'Akun tidak ditemukan, silahkan cek kembali'],400);
+        }
         Mail::send("welcome", ["user" => $user], function ($m) use ($user) {
             $m->from(env("MAIL_USERNAME"), "Laravel");
             $m->to($user->email, $user->name)->subject("Hello Worlds");

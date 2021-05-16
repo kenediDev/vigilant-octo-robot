@@ -4,6 +4,7 @@ export interface Message {
 }
 
 export interface User {
+    id: number;
     name: string;
     email: string;
     password: string;
@@ -15,5 +16,4 @@ export interface UserState {
     user: User[];
     data: User;
     message: Message;
-    token: string;
 }

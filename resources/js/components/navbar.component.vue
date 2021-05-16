@@ -1,23 +1,69 @@
 <template>
   <div>
-    <div class="section-navbar" v-if="active">
-      <img :src="logo" alt="" />
-      <div class="section-navbar-right">
-        <a href="#" @click="clickRouter('home')">Beranda</a>
-        <a href="#" @click="clickRouter('service')">Service</a>
-        <a href="#" @click="clickRouter('testimoni')">Testimoni</a>
-        <a href="#" @click="clickRouter('about')">Tentang Kami</a>
-        <a href="#" @click="clickRouter('contact')">Kontak</a>
-        <div class="divider"></div>
-        <button @click="clickRouter('login')" v-if="!token" class="btn-web">
-          <span>Masuk</span><i class="fas fa-arrow-right"></i>
-        </button>
-        <button v-else class="bars" @click="clickRouter('dashboard')">
+    <div class="navbar-top">
+      <img :src="logo" alt="" class="navbar-brand" />
+      <div class="navbar-top-group">
+        <div class="navbar-top-button">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="navbar-top-button-group">
+            <span class="navbar-top-button-title">Alamat</span>
+            <span class="navbar-top-button-description"
+              >Mobil Sangkut, Lubuklinggau, Jl Yos Sudarso Kelurahan Watervang
+              Kecamatan Lubukli Bengkel, Watervang, Lubuk Linggau Tim. I, Kota
+              Lubuklinggau, Sumatera Selatan 31628</span
+            >
+          </div>
+        </div>
+        <div class="navbar-top-button">
+          <i class="fas fa-phone"></i>
+          <div class="navbar-top-button-group">
+            <span class="navbar-top-button-title">Nomor Telepon</span>
+            <span class="navbar-top-button-description" id="phone"
+              >+62852-6848-8257</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar">
+      <div class="navbar-left">
+        <a href="#" class="web">Beranda</a>
+        <a href="#" class="web">Service</a>
+        <a href="#" class="web">Testimoni</a>
+        <a href="#" class="web">Tentang Kami</a>
+        <a href="#" class="web">Kontak</a>
+        <a href="#" class="mobile" @click="clickDrawer()">
           <i class="fas fa-bars"></i>
+        </a>
+      </div>
+      <div class="navbar-right">
+        <button @click="clickRouter('login')">
+          <span>Masuk</span>
+          <i class="fas fa-arrow-right"></i>
         </button>
-        <button class="btn-mobile">
-          <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <div
+      :class="
+        drawer === 1
+          ? 'drawer'
+          : drawer === 2
+          ? 'drawer-close'
+          : 'drawer-hidden'
+      "
+    >
+      <div class="drawer-image">
+        <img :src="logo" alt="" />
+        <button @click="clickDrawer()">
+          <i class="fas fa-arrow-left"></i>
         </button>
+      </div>
+      <div class="drawer-list">
+        <a href="" class="anchor-mobile">Beranda</a>
+        <a href="" class="anchor-mobile">Service</a>
+        <a href="" class="anchor-mobile">Testimoni</a>
+        <a href="" class="anchor-mobile">Tentang Kami</a>
+        <a href="" class="anchor-mobile">Kontak</a>
       </div>
     </div>
   </div>
@@ -26,135 +72,294 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import { mapGetters } from "vuex";
-@Component({
-  computed: {
-    ...mapGetters(["token"]),
-  },
-})
+
+@Component({})
 export default class NavbarComponent extends Vue {
-  logo: string = `http://${window.location.host}/image/default/Tanpa judul (5).png`;
-  active: boolean = true;
-
+  logo: string = `http://${window.location.host}/image/default/Tanpa%20judul%20(5).png`;
+  drawer: number = 0;
+  clickDrawer() {
+    if (!this.drawer) {
+      this.drawer = 1;
+    } else {
+      if (this.drawer === 1) {
+        this.drawer = 2;
+      } else {
+        this.drawer = 1;
+      }
+    }
+  }
   clickRouter(args: string) {
-    this.$router.push({
-      name: args,
-    });
-  }
-
-  beforeUpdate() {
-    if (this.$route.name === "dashboard") {
-      this.active = false;
-    }
-  }
-
-  beforeMount() {
-    if (this.$route.name === "dashboard") {
-      this.active = false;
-    }
+    this.$router.push({ name: args });
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.section-navbar {
-  height: 75px;
+.navbar-top {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  height: 90px;
   background-color: white;
   box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
-  img {
-    height: 80px;
+  .navbar-brand {
+    height: 100%;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
   }
-  .section-navbar-right {
+  .navbar-top-group {
     display: flex;
     align-items: center;
-    a {
-      margin: 0px 15px 0px 0px;
-      color: rgb(115 118 122);
-      text-decoration: none;
-    }
-    .divider {
-      width: 1px;
-      height: 40px;
-      background-color: rgb(224 224 224);
-      margin: 0px 20px 0px 15px;
-    }
-    button {
-      width: 100px;
-      height: 32px;
-      border: none;
-      outline: none;
-      background-color: transparent;
-      border: solid 1px rgb(80 173 42);
-      color: rgb(80 173 42);
-      transition: 500ms ease-in-out;
-      &:hover {
-        background-color: rgb(80 173 42);
-        color: white;
-      }
-      font-weight: bold;
-      border-radius: 15px;
+    .navbar-top-button {
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
       i {
-        margin-left: 15px;
+        font-size: 20px;
+        color: rgb(3, 172, 14);
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border-radius: 10px;
+        margin-right: 15px;
+      }
+      .navbar-top-button-group {
+        display: flex;
+        flex-direction: column;
+        .navbar-top-button-title {
+          font-weight: bold;
+          font-family: "Roboto Slab", serif;
+          color: #808080;
+        }
+        span {
+          color: black;
+        }
+        .navbar-top-button-description {
+          width: 200px;
+          height: 40px;
+          overflow-y: auto;
+        }
       }
     }
   }
 }
 
-.bars {
-  width: 32px !important;
-  height: 32px !important;
+.navbar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: none !important;
-  &:hover {
-    background-color: white !important;
-    color: rgb(80 173 42) !important;
+  justify-content: space-around;
+  background-color: #2d2a2a;
+  height: 60px;
+  .navbar-left {
+    a {
+      margin-right: 10px;
+      font-family: "Roboto Slab", serif;
+      color: white;
+    }
   }
-  i {
-    margin: 0 !important;
-    font-size: 18px !important;
+  .navbar-right {
+    button {
+      border: none;
+      outline: none;
+      width: 120px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #2d2a2a;
+      border: solid 1px white;
+      color: white;
+      border-radius: 10px;
+      font-weight: bold;
+      span {
+        margin-right: 10px;
+      }
+      transition: 500ms ease-in-out;
+      &:hover {
+        background-color: white;
+        color: #2d2a2a;
+      }
+    }
   }
 }
 
-.btn-mobile {
+@media screen and (max-width: 812px) {
+  .navbar-top {
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding-bottom: 40px;
+    .navbar-brand {
+      height: 90px;
+    }
+    .navbar-top-group {
+      justify-content: space-around;
+      flex-direction: row;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      .navbar-top-button {
+        margin: 0;
+        #phone {
+          width: 140px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 552px) {
+  .navbar-top {
+    padding-bottom: 0px;
+    .navbar-top-group {
+      align-items: initial;
+      width: auto;
+      flex-direction: column;
+      height: 100%;
+      .navbar-top-button {
+        &:first-child {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+}
+
+.mobile {
   display: none;
   visibility: hidden;
 }
 
-@media screen and (max-width: 757px) {
-  .bars,
-  .btn-web {
-    display: none;
-    visibility: hidden;
-  }
-  .btn-mobile {
-    visibility: visible;
-    display: block;
-    border: none !important;
-    background-color: transparent !important;
-    font-size: 20px;
-    &:hover {
-      background-color: white !important;
-      color: rgb(80 173 42) !important;
-    }
-  }
-  .section-navbar {
-    .section-navbar-right {
-      a {
+@media screen and (max-width: 628px) {
+  .navbar {
+    justify-content: space-between;
+    padding: 0px 30px 0px 30px;
+    .navbar-left {
+      .web {
         display: none;
         visibility: hidden;
       }
-      .divider {
-        display: none;
-        visibility: hidden;
+      .mobile {
+        display: block;
+        visibility: visible;
+        i {
+          font-size: 26px;
+        }
       }
     }
+  }
+}
+
+// Drawer
+.drawer,
+.drawer-close {
+  position: fixed;
+  top: 0;
+  width: 300px;
+  background-color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+  .drawer-image {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    img {
+      width: 200px;
+      height: 80px;
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    button {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+      background-color: white;
+      color: rgb(3, 172, 14);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+  }
+  .drawer-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    a {
+      background-color: white;
+      height: 36px;
+      width: 200px;
+      padding: 0px 15px 0px 15px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      color: rgb(3, 172, 14);
+      border-right: solid 2px rgb(3, 172, 14);
+      margin-bottom: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+}
+
+.drawer {
+  animation: drawer 1s forwards;
+}
+
+.drawer-close {
+  animation: drawer-close 1s forwards;
+}
+
+.drawer-hidden {
+  display: none;
+  visibility: hidden;
+}
+
+@keyframes drawer {
+  from {
+    left: -1200px;
+    top: 0;
+  }
+  to {
+    left: 0;
+    left: 0;
+  }
+}
+
+@keyframes drawer-close {
+  from {
+    left: 0;
+    left: 0;
+  }
+  to {
+    left: -1200px;
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .drawer {
+    width: 100%;
   }
 }
 </style>

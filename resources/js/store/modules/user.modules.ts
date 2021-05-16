@@ -1,43 +1,25 @@
 import axios from "axios";
-import { Message, User, UserState } from "../types/interface";
+import { User, Message, UserState } from "../types/interface";
 
 const state: UserState = {
-    user: [],
     data: {
+        id: 0,
         name: "",
         email: "",
         password: "",
         old_password: "",
         confirm_password: ""
     },
+    user: [],
     message: {
         message: "",
         valid: 0
-    },
-    token: ""
+    }
 };
 
 const actions = {
     async login({ commit }: any, args: User) {
         return await axios.post("/api/v1/auth", args, {
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "POST",
-                "Access-Control-Allow-Headers":
-                    "Content-Type, Origin, Accepted, X-Requested-With"
-            },
-            timeout: 865000,
-            responseType: "json",
-            withCredentials: false,
-            maxRedirects: 5,
-            maxContentLength: 2000,
-            maxBodyLength: 2000,
-            validateStatus: (status: number) => status >= 200 && status < 300
-        });
-    },
-    async forgot({ commit }: any, args: User) {
-        return await axios.post("/api/v1/auth/reset", args, {
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Methods": "POST",
@@ -53,20 +35,33 @@ const actions = {
             maxRedirects: 5,
             validateStatus: (status: number) => status >= 200 && status < 300
         });
+    },
+    async reset({ commit }: any, args: any) {
+        return await axios.post("/api/v1/auth/reset", args, {
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Methods": "POST",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers":
+                    "Content-Type, Origin, Accepted, X-Requested-With"
+            },
+            timeout: 865000,
+            responseType: "json",
+            withCredentials: false,
+            maxRedirects: 5,
+            maxContentLength: 2000,
+            maxBodyLength: 2000,
+            validateStatus: (status: number) => status >= 200 && status < 300
+        });
     }
 };
-
 const mutations = {
-    MESSAGE: (results: UserState, message: Message) =>
-        (results.message = message),
-    TOKEN: (results: UserState, token: string) => (results.token = token)
+    MESSAGE: (results: UserState, data: Message) => (results.message = data)
 };
 
 const getters = {
-    token: (results: UserState) => results.token,
     message: (results: UserState) => results.message
 };
-
 export default {
     state,
     actions,
