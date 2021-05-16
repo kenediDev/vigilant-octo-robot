@@ -28,7 +28,6 @@ export default class BaseComponent extends Vue {
     }
     this.$store.dispatch("listDefault");
     this.$store.dispatch("listImage");
-    this.$router.push({ name: "contact" });
   }
 }
 </script>
@@ -36,6 +35,8 @@ export default class BaseComponent extends Vue {
 <style lang="scss" scoped>
 @import url("https://use.fontawesome.com/releases/v5.15.3/css/all.css");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab:wght@400;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam&display=swap');
 // font-family: 'Roboto', sans-serif;
 // font-family: 'Roboto Slab', serif;
+// font-family: 'Be Vietnam', sans-serif;
 </style>

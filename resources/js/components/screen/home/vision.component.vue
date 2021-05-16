@@ -4,6 +4,20 @@
       <div class="vision-list">
         <div v-for="(items, index) in listVision" :key="index">
           <div class="vision-card">
+            <div
+              v-if="active"
+              class="visi-dashboard-group"
+              id="visi-dashboard-another"
+            >
+              <button>
+                <i class="fas fa-edit"></i>
+                <span>Edit</span>
+              </button>
+              <button>
+                <i class="fas fa-trash"></i>
+                <span>Hapus</span>
+              </button>
+            </div>
             <div class="vision-card-title">
               {{ items.name }}
             </div>
@@ -27,7 +41,16 @@ import { mapGetters } from "vuex";
     ...mapGetters(["listVision"]),
   },
 })
-export default class VisionComponent extends Vue {}
+export default class VisionComponent extends Vue {
+  active: boolean = false;
+  beforeMount() {
+    if (this.$route.name === "dashboard") {
+      this.active = true;
+    } else {
+      this.active = false;
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -62,5 +85,43 @@ export default class VisionComponent extends Vue {}
       }
     }
   }
+}
+
+.visi-dashboard-group {
+  display: flex;
+  align-items: center;
+  button {
+    border: none;
+    outline: none;
+    height: 28px;
+    padding: 0px 15px 0px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 171, 85);
+    color: white;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px,
+      rgb(145 158 171 / 24%) 0px 10px 10px -4px;
+    -webkit-box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px,
+      rgb(145 158 171 / 24%) 0px 10px 10px -4px;
+    -moz-box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px,
+      rgb(145 158 171 / 24%) 0px 10px 10px -4px;
+    border-radius: 10px;
+    margin-right: 2.5px;
+    &:last-child {
+      background-color: red;
+      margin-left: 2.5px;
+      color: white;
+    }
+    span {
+      margin-left: 0.75rem;
+      font-family: "Be Vietnam", sans-serif;
+    }
+  }
+}
+
+#visi-dashboard-another {
+  margin-bottom: 10px;
 }
 </style>

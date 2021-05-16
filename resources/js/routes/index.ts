@@ -85,8 +85,8 @@ const authenticate = ["login"];
 const unauthenticate = ["dashboard"];
 
 router.beforeEach((to, from, next) => {
-    if (authenticate.includes(to.name)) {
-        if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
+        if (authenticate.includes(to.name)) {
             next({ name: "home" });
         } else {
             next();

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="section-navbar">
+    <div class="section-navbar" v-if="active">
       <img :src="logo" alt="" />
       <div class="section-navbar-right">
         <a href="#" @click="clickRouter('home')">Beranda</a>
@@ -12,7 +12,7 @@
         <button @click="clickRouter('login')" v-if="!token" class="btn-web">
           <span>Masuk</span><i class="fas fa-arrow-right"></i>
         </button>
-        <button v-else class="bars">
+        <button v-else class="bars" @click="clickRouter('dashboard')">
           <i class="fas fa-bars"></i>
         </button>
         <button class="btn-mobile">
@@ -34,10 +34,24 @@ import { mapGetters } from "vuex";
 })
 export default class NavbarComponent extends Vue {
   logo: string = `http://${window.location.host}/image/default/Tanpa judul (5).png`;
+  active: boolean = true;
+
   clickRouter(args: string) {
     this.$router.push({
       name: args,
     });
+  }
+
+  beforeUpdate() {
+    if (this.$route.name === "dashboard") {
+      this.active = false;
+    }
+  }
+
+  beforeMount() {
+    if (this.$route.name === "dashboard") {
+      this.active = false;
+    }
   }
 }
 </script>

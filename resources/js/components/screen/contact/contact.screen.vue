@@ -5,6 +5,12 @@
       <span>Hubungi Kami</span>
     </div>
     <div class="list-contact">
+      <div v-if="active" class="dashboard-contact" id="dashboard-contact">
+        <button>
+          <i class="fas fa-edit"></i>
+          <span>Edit</span>
+        </button>
+      </div>
       <div class="contact-address">
         <i class="fas fa-map-pin"></i>
         <div class="contact-address-content">
@@ -62,7 +68,16 @@ import { icon } from "leaflet";
     };
   },
 })
-export default class ContactComponent extends Vue {}
+export default class ContactComponent extends Vue {
+  active: boolean = false;
+  beforeMount() {
+    if (this.$route.name === "dashboard") {
+      this.active = true;
+    } else {
+      this.active = false;
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -143,5 +158,36 @@ export default class ContactComponent extends Vue {}
   width: 100%;
   height: 500px;
   margin-bottom: 20px;
+}
+
+.dashboard-contact {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  button {
+    border: none;
+    outline: none;
+    height: 28px;
+    width: 200px;
+    padding: 0px 15px 0px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 171, 85);
+    color: white;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px,
+      rgb(145 158 171 / 24%) 0px 10px 10px -4px;
+    -webkit-box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px,
+      rgb(145 158 171 / 24%) 0px 10px 10px -4px;
+    -moz-box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px,
+      rgb(145 158 171 / 24%) 0px 10px 10px -4px;
+    border-radius: 10px;
+    margin-right: 2.5px;
+    span {
+      margin-left: 0.75rem;
+      font-family: "Be Vietnam", sans-serif;
+    }
+  }
 }
 </style>

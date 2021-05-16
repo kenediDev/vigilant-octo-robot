@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="about">
+    <div class="about" :id="active ? 'active' : ''">
       <img
         src="https://i2.wp.com/1-station.com/wp-content/uploads/2016/10/About-1-Station.jpg"
         alt=""
@@ -51,6 +51,12 @@
         </div>
       </div>
     </div>
+    <div v-if="active" class="dashboard-active">
+      <button>
+        <i class="fas fa-edit"></i>
+        <span>Edit</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -59,7 +65,17 @@ import Vue from "vue";
 import { Component } from "vue-property-decorator";
 
 @Component({})
-export default class AboutScreen extends Vue {}
+export default class AboutScreen extends Vue {
+  active: boolean = false;
+
+  beforeMount() {
+    if (this.$route.name === "dashboard") {
+      this.active = true;
+    } else {
+      this.active = false;
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -91,6 +107,42 @@ export default class AboutScreen extends Vue {}
         font-weight: bold;
         margin-bottom: 5px;
       }
+    }
+  }
+}
+
+#active {
+  padding-top: 20px;
+}
+
+.dashboard-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  button {
+    border: none;
+    outline: none;
+    height: 28px;
+    padding: 0px 15px 0px 15px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 171, 85);
+    color: white;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px,
+      rgb(145 158 171 / 24%) 0px 10px 10px -4px;
+    -webkit-box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px,
+      rgb(145 158 171 / 24%) 0px 10px 10px -4px;
+    -moz-box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px,
+      rgb(145 158 171 / 24%) 0px 10px 10px -4px;
+    border-radius: 10px;
+    margin-right: 2.5px;
+    span {
+      margin-left: 0.75rem;
+      font-family: "Be Vietnam", sans-serif;
     }
   }
 }
