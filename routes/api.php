@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BackgroundController;
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TestimonialsController;
@@ -84,4 +85,15 @@ Route::group([
     Route::get('', [DefaultController::class, 'listImage']);
     Route::get('product/', [DefaultController::class, 'listProduct']);
     Route::get('car/', [DefaultController::class, 'listCar']);
+});
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'v1/background'
+], function () {
+    Route::post('', [BackgroundController::class, 'create']);
+    Route::post('{id}', [BackgroundController::class, 'put']);
+    Route::delete('{id}', [BackgroundController::class, 'destroy']);
+    Route::get('', [BackgroundController::class, 'list']);
 });

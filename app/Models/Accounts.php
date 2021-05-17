@@ -11,4 +11,9 @@ class Accounts extends Model
 
     protected $table = "accounts";
     protected $fillable = ["brand", "title", "background", "phone_numbers", "address", "user_id"];
+
+    public function background()
+    {
+        return $this->hasMany(Background::class);
+    }
 }
