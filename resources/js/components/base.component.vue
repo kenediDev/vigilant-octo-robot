@@ -3,6 +3,7 @@
     <navbar />
     <router-view v-on:clickRouter="clickRouter($event)"></router-view>
     <message />
+    <footers />
   </div>
 </template>
 
@@ -11,11 +12,13 @@ import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import navbar from "./navbar.component.vue";
 import message from "./validation/message.component.vue";
+import footers from "./footer.component.vue";
 
 @Component({
   components: {
     navbar,
     message,
+    footers,
   },
 })
 export default class BaseComponent extends Vue {
@@ -25,6 +28,7 @@ export default class BaseComponent extends Vue {
   beforeMount() {
     this.$store.dispatch("listCar");
     this.$store.dispatch("listProduct");
+    this.$store.dispatch("listDefault");
   }
 }
 </script>

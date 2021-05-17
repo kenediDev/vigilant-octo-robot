@@ -289,10 +289,80 @@ const state = {
             }
             return array;
         }
-    }
+    },
+    blog: [
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            background: faker.image.business(),
+            date: faker.datatype.datetime(),
+            description: faker.lorem.words(200)
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            background: faker.image.business(),
+            date: faker.datatype.datetime(),
+            description: faker.lorem.words(200)
+        },
+        {
+            name: faker.name.firstName(),
+            avatar: faker.image.avatar(),
+            background: faker.image.business(),
+            date: faker.datatype.datetime(),
+            description: faker.lorem.words(200)
+        }
+    ],
+    default: [],
+    vision: [
+        {
+            name: "Tentang Kami",
+            url:
+                "https://i2.wp.com/1-station.com/wp-content/uploads/2016/11/Art23646_low.jpg",
+            description:
+                " Station, Ngebengkel Bener! 1 Station berusaha untuk memberikan pengerjaan servis dan perawatan kendaraan terbaik di Indonesia. Toko ban kami juga memiliki layanan lain seperti: paket penggantian oli, penggantian aki, rem dan juga spooring balancing. Dengan jumlah 8 toko di wilayah Jakarta, Tangerang dan Bekasi, anda akan dilayani oleh tim kami yang sudah berpengalaman"
+        },
+        {
+            name: "Visi Kami",
+            url:
+                "https://i2.wp.com/1-station.com/wp-content/uploads/2016/11/Art23610_low.jpg?",
+            description:
+                "Di 1 Station, kami ingin memberikan transparansi, kualitas tinggi dan perawatan mobil yang terjangkau pada pelanggan. Kami ingin membangun hubungan jangka panjang yang berkelanjutan dengan seluruh semua pihak yang berdasarkan pada kepercayaan, dalam arti yang paling murni dari kata tersebut."
+        },
+        {
+            name: "Kesempatan",
+            url:
+                "https://i0.wp.com/1-station.com/wp-content/uploads/2016/11/Kesempatan-berkarir.jpg",
+            description:
+                "Bergabunglah dengan tim profesional 1 Station sekarang juga dengan mengirimkan lamaran pekerjaan ke alamat email : hrd@1-station.co.id"
+        }
+    ]
 };
 
 const actions = {
+    async listDefault({ commit }: any) {
+        return await axios
+            .get("/api/v1/default", {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Methods": "GET",
+                    "Access-Control-Allow-Headers":
+                        "Content-Type, Origin, Accepted, X-Requested-With",
+                    "Access-Control-Allow-Origin": "*"
+                },
+                timeout: 865000,
+                responseType: "json",
+                withCredentials: false,
+                maxBodyLength: 2000,
+                maxContentLength: 2000,
+                maxRedirects: 5,
+                validateStatus: (status: number) =>
+                    status >= 200 && status < 300
+            })
+            .then((res: AxiosResponse<any>) => {
+                commit("listDefault", res.data);
+            });
+    },
     async listCar({ commit }: any) {
         return await axios
             .get("/api/v1/default/car", {
@@ -343,14 +413,18 @@ const actions = {
 
 const mutations = {
     listCar: (results: any, data: any) => (results.car = data),
-    listProduct: (results: any, data: any) => (results.product = data)
+    listProduct: (results: any, data: any) => (results.product = data),
+    listDefault: (results: any, data: any) => (results.default = data)
 };
 
 const getters = {
     car: (results: any) => results.car,
     choice: (results: any) => results.fakeChoice,
     product: (results: any) => results.product,
-    testimoni: (results: any) => results.testimoni
+    testimoni: (results: any) => results.testimoni,
+    blog: (results: any) => results.blog,
+    cars: (results: any) => results.default,
+    vision: (results: any) => results.vision
 };
 
 export default {

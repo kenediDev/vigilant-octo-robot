@@ -36,6 +36,9 @@
     <project />
     <consultation />
     <testimoni />
+    <news />
+    <sticker />
+    <vision />
   </div>
 </template>
 
@@ -49,6 +52,9 @@ import owner from "./home/owner.component.vue";
 import project from "./home/project.component.vue";
 import consultation from "./home/consultation.component.vue";
 import testimoni from "./home/testimoni.component.vue";
+import news from "./home/news.component.vue";
+import sticker from "./home/sticker.component.vue";
+import vision from "./home/vision.component.vue";
 
 @Component({
   components: {
@@ -58,6 +64,9 @@ import testimoni from "./home/testimoni.component.vue";
     project,
     consultation,
     testimoni,
+    news,
+    sticker,
+    vision,
   },
   computed: {
     ...mapGetters(["car"]),
