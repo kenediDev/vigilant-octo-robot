@@ -37,10 +37,13 @@
         </a>
       </div>
       <div class="navbar-right">
-        <button @click="clickRouter('login')">
+        <button v-if="!token" @click="clickRouter('login')">
           <span>Masuk</span>
           <i class="fas fa-arrow-right"></i>
         </button>
+        <a v-else class="button-dashboard" @click="clickRouter('dashboard')">
+          <icon :src="dashboard" class="dashboard-icon" />
+        </a>
       </div>
     </div>
     <div
@@ -59,11 +62,21 @@
         </button>
       </div>
       <div class="drawer-list">
-        <a href="#" @click="clickRouter('home')" class="anchor-mobile">Beranda</a>
-        <a href="#" @click="clickRouter('service')" class="anchor-mobile">Service</a>
-        <a href="#" @click="clickRouter('testimoni')" class="anchor-mobile">Testimoni</a>
-        <a href="#" @click="clickRouter('about')" class="anchor-mobile">Tentang Kami</a>
-        <a href="#" @click="clickRouter('contact')" class="anchor-mobile">Kontak</a>
+        <a href="#" @click="clickRouter('home')" class="anchor-mobile"
+          >Beranda</a
+        >
+        <a href="#" @click="clickRouter('service')" class="anchor-mobile"
+          >Service</a
+        >
+        <a href="#" @click="clickRouter('testimoni')" class="anchor-mobile"
+          >Testimoni</a
+        >
+        <a href="#" @click="clickRouter('about')" class="anchor-mobile"
+          >Tentang Kami</a
+        >
+        <a href="#" @click="clickRouter('contact')" class="anchor-mobile"
+          >Kontak</a
+        >
       </div>
     </div>
   </div>
@@ -71,13 +84,18 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import phone from "./assets/smartphone.svg";
 import map from "./assets/map.svg";
 import bars from "./assets/list.svg";
+import dashboard from "./assets/dashboard (1).svg";
 
 @Component({})
 export default class NavbarComponent extends Vue {
+  @Prop(String) token: string;
+
+  dashboard = dashboard;
+
   phone = phone;
   map = map;
   bars = bars;
@@ -99,6 +117,7 @@ export default class NavbarComponent extends Vue {
   }
 }
 </script>
+
 
 <style lang="scss" scoped>
 a {
@@ -363,5 +382,24 @@ a {
   .drawer {
     width: 100%;
   }
+}
+
+.button-dashboard {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+}
+
+.dashboard-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 </style>

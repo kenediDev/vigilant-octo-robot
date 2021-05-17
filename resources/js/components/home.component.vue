@@ -91,7 +91,6 @@ export default class LoginComponent extends Vue {
         this.chance = true;
       }
     }
-    console.log(this.carousel, this.chance);
   }
 }
 </script>

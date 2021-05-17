@@ -7,6 +7,7 @@ import TestimoniComponent from "../components/testimoni.component.vue";
 import ServiceComponent from "../components/service.component.vue";
 import ContactComponent from "../components/contact.component.vue";
 import AboutComponent from "../components/about.component.vue";
+import DashboardComponent from "../components/dashboard.component.vue";
 
 Vue.use(VueRouter);
 
@@ -17,7 +18,8 @@ type RouteName =
     | "testimoni"
     | "service"
     | "contact"
-    | "about";
+    | "about"
+    | "dashboard";
 type RoutePath =
     | "/"
     | "/login"
@@ -25,7 +27,8 @@ type RoutePath =
     | "/testimoni"
     | "/service"
     | "/contact"
-    | "/about";
+    | "/about"
+    | "/dashboard";
 
 interface Routes {
     name: RouteName;
@@ -64,7 +67,8 @@ const routes: Routes[] = [
         path: "/contact",
         component: ContactComponent
     },
-    { name: "about", path: "/about", component: AboutComponent }
+    { name: "about", path: "/about", component: AboutComponent },
+    { name: "dashboard", path: "/dashboard", component: DashboardComponent }
 ];
 
 const router = new VueRouter({ routes });
