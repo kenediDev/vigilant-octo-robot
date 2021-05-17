@@ -336,6 +336,64 @@ const state = {
             description:
                 "Bergabunglah dengan tim profesional 1 Station sekarang juga dengan mengirimkan lamaran pekerjaan ke alamat email : hrd@1-station.co.id"
         }
+    ],
+    service: [
+        {
+            name: "LAYANAN DESINFEKSI MOBIL",
+            url:
+                "https://i1.wp.com/1-station.com/wp-content/uploads/2020/04/Disinfection-Mobil.jpg",
+            description:
+                "Digunakan oleh maskapai besar untuk mencegah penyebaran penyakit. Efektif untuk 7 hari. Bahan kimia yang digunakan adalah Ardrox 1820"
+        },
+        {
+            name: "PENGGANTIAN BAN",
+            url:
+                "https://i1.wp.com/1-station.com/wp-content/uploads/2020/04/Disinfection-Mobil.jpg",
+            description:
+                "1 Station menyediakan beragam pilihan ban dari berbagai merk seperti Bridgestone, Dunlop, Michelin, GT Radial, Continental, Hankook, Yokohama dll untuk semua tipe kendaraan di Indonesia"
+        },
+        {
+            name: "PAKET SERVICE PENGGANTIAN OLI",
+            url:
+                "https://i0.wp.com/1-station.com/wp-content/uploads/2018/12/Art23462_low-1.jpg",
+            description:
+                "Kami menyediakan paket servis penggantian oli dengan Shell dan Mobil . Harga paket sudah termasuk penggantian 4 liter oli, filter oli baru, pengecekan 30 bagian , dan engine flush."
+        },
+        {
+            name: "PAKET TUNE UP DAN ENGINE CARE",
+            url:
+                "https://i0.wp.com/1-station.com/wp-content/uploads/2018/12/Art23462_low-1.jpg",
+            description:
+                "Menggunakan produk Liqui Moly yang diimpor dari Jerman, pengerjaan tune up dan engine care akan meningkatkan performa dan juga menjaga kondisi mesin mobil"
+        },
+        {
+            name: "PENGGANTIAN AKI",
+            url:
+                "https://i2.wp.com/1-station.com/wp-content/uploads/2016/11/Art23477_low.jpg",
+            description:
+                "Produk NS menjadi unggulan di 1 Station karena memiliki tipe untuk semua tipe kendaraan dan juga memiliki masa garansi yang panjang selama 18 bulan"
+        },
+        {
+            name: "PENGGANTIAN BRAKE DISC",
+            url:
+                "https://i1.wp.com/1-station.com/wp-content/uploads/2018/12/Art23520_low.jpg?",
+            description:
+                "1 Station merupakan salah satu tempat penjualan produk Brake Disc dari Brembo. Kualitas dari Brembo sebagai brand terbaik di industri sudah tidak diragukan lagi di seluruh dunia"
+        },
+        {
+            name: "SPOORING DAN BALANCING",
+            url:
+                "https://i1.wp.com/1-station.com/wp-content/uploads/2018/12/Art23520_low.jpg",
+            description:
+                "Pengerjaan Spooring dan Balancing akan dilakukan oleh teknisi kami yang sudah dibekali dengan kemampuan teknis seputar mobil. 1 Station memberikan garansi selama 2 minggu untuk pengerjaan ini"
+        },
+        {
+            name: "SAFETY CHECK",
+            url:
+                "https://i0.wp.com/1-station.com/wp-content/uploads/2016/11/Kesempatan-berkarir-1.jpg",
+            description:
+                "Setiap pelanggan berhak untuk mengetahui kondisi mobil mereka, oleh karena itu kami memberikan layanan safety check secara gratis bagi pelanggan tetap kami"
+        }
     ]
 };
 
@@ -424,7 +482,8 @@ const getters = {
     testimoni: (results: any) => results.testimoni,
     blog: (results: any) => results.blog,
     cars: (results: any) => results.default,
-    vision: (results: any) => results.vision
+    vision: (results: any) => results.vision,
+    service: (results: any) => results.service
 };
 
 export default {

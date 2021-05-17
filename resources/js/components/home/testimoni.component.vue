@@ -6,7 +6,9 @@
     </div>
     <div class="testimoni-list">
       <div
-        v-for="(items, index) in testimoni.data.slice(check, count)"
+        v-for="(items, index) in !active
+          ? testimoni.data.slice(check, count)
+          : testimoni.data"
         :key="index"
       >
         <div class="testimoni-card">
@@ -28,29 +30,33 @@
         </div>
       </div>
     </div>
-    <div class="testimoni-dots" v-if="testimoni.data[0]">
-      <i
-        class="fas fa-arrow-left"
-        id="testioni-dots-btn"
-        @click="clickPrev()"
-      ></i>
-      <div class="testimoni-dots-group">
-        <span
-          class="fas fa-circle"
-          :id="
-            index === page ? 'testimoni-dots-btn-active' : 'testimoni-dots-btn'
-          "
-          v-for="(items, index) in testimoni.perPage()"
-          :key="index"
-          @click="clickCheck(index, testimoni.perPage())"
-          >{{ items }}</span
-        >
+    <div v-if="!active">
+      <div class="testimoni-dots" v-if="testimoni.data[0]">
+        <i
+          class="fas fa-arrow-left"
+          id="testioni-dots-btn"
+          @click="clickPrev()"
+        ></i>
+        <div class="testimoni-dots-group">
+          <span
+            class="fas fa-circle"
+            :id="
+              index === page
+                ? 'testimoni-dots-btn-active'
+                : 'testimoni-dots-btn'
+            "
+            v-for="(items, index) in testimoni.perPage()"
+            :key="index"
+            @click="clickCheck(index, testimoni.perPage())"
+            >{{ items }}</span
+          >
+        </div>
+        <i
+          class="fas fa-arrow-right"
+          id="testioni-dots-btn"
+          @click="clickNext(testimoni.perPage())"
+        ></i>
       </div>
-      <i
-        class="fas fa-arrow-right"
-        id="testioni-dots-btn"
-        @click="clickNext(testimoni.perPage())"
-      ></i>
     </div>
   </div>
 </template>
@@ -68,6 +74,7 @@ import $ from "jquery";
   },
 })
 export default class TestimoniComponent extends Vue {
+  active: boolean = false;
   qoute = quote;
   check: number = 0;
   page: number = 0;
@@ -142,6 +149,22 @@ export default class TestimoniComponent extends Vue {
       this.page--;
       this.check = this.check - 3;
       this.count = this.count - 3;
+    }
+  }
+
+  beforeUpdate() {
+    if (this.$route.name === "testimoni") {
+      this.active = true;
+    } else {
+      this.active = false;
+    }
+  }
+
+  beforeMount() {
+    if (this.$route.name === "testimoni") {
+      this.active = true;
+    } else {
+      this.active = false;
     }
   }
 }

@@ -28,9 +28,9 @@
     <div class="navbar">
       <div class="navbar-left">
         <a href="#" class="web" @click="clickRouter('home')">Beranda</a>
-        <a href="#" class="web">Service</a>
-        <a href="#" class="web">Testimoni</a>
-        <a href="#" class="web">Tentang Kami</a>
+        <a href="#" class="web" @click="clickRouter('service')">Service</a>
+        <a href="#" class="web" @click="clickRouter('testimoni')">Testimoni</a>
+        <a href="#" class="web" @click="clickRouter('about')">Tentang Kami</a>
         <a href="#" class="web">Kontak</a>
         <a href="#" class="mobile" @click="clickDrawer()">
           <i class="fas fa-bars"></i>

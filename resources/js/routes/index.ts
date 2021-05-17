@@ -3,11 +3,29 @@ import VueRouter from "vue-router";
 import HomeComponent from "../components/home.component.vue";
 import LoginComponent from "../components/login.component.vue";
 import ForgotComponent from "../components/forgot.component.vue";
+import TestimoniComponent from "../components/testimoni.component.vue";
+import ServiceComponent from "../components/service.component.vue";
+import ContactComponent from "../components/contact.component.vue";
+import AboutComponent from "../components/about.component.vue";
 
 Vue.use(VueRouter);
 
-type RouteName = "home" | "login" | "forgot";
-type RoutePath = "/" | "/login" | "/forgot-password";
+type RouteName =
+    | "home"
+    | "login"
+    | "forgot"
+    | "testimoni"
+    | "service"
+    | "contact"
+    | "about";
+type RoutePath =
+    | "/"
+    | "/login"
+    | "/forgot-password"
+    | "/testimoni"
+    | "/service"
+    | "/contact"
+    | "/about";
 
 interface Routes {
     name: RouteName;
@@ -30,7 +48,23 @@ const routes: Routes[] = [
         name: "forgot",
         path: "/forgot-password",
         component: ForgotComponent
-    }
+    },
+    {
+        name: "testimoni",
+        path: "/testimoni",
+        component: TestimoniComponent
+    },
+    {
+        name: "service",
+        path: "/service",
+        component: ServiceComponent
+    },
+    {
+        name: "contact",
+        path: "/contact",
+        component: ContactComponent
+    },
+    { name: "about", path: "/about", component: AboutComponent }
 ];
 
 const router = new VueRouter({ routes });

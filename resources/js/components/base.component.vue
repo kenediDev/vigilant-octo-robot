@@ -29,6 +29,7 @@ export default class BaseComponent extends Vue {
     this.$store.dispatch("listCar");
     this.$store.dispatch("listProduct");
     this.$store.dispatch("listDefault");
+    this.$router.push({ name: "about" });
   }
 }
 </script>
