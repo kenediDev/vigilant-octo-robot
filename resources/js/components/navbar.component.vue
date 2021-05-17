@@ -31,7 +31,7 @@
         <a href="#" class="web" @click="clickRouter('service')">Service</a>
         <a href="#" class="web" @click="clickRouter('testimoni')">Testimoni</a>
         <a href="#" class="web" @click="clickRouter('about')">Tentang Kami</a>
-        <a href="#" class="web">Kontak</a>
+        <a href="#" class="web" @click="clickRouter('contact')">Kontak</a>
         <a href="#" class="mobile" @click="clickDrawer()">
           <i class="fas fa-bars"></i>
         </a>
@@ -59,11 +59,11 @@
         </button>
       </div>
       <div class="drawer-list">
-        <a href="" class="anchor-mobile">Beranda</a>
-        <a href="" class="anchor-mobile">Service</a>
-        <a href="" class="anchor-mobile">Testimoni</a>
-        <a href="" class="anchor-mobile">Tentang Kami</a>
-        <a href="" class="anchor-mobile">Kontak</a>
+        <a href="#" @click="clickRouter('home')" class="anchor-mobile">Beranda</a>
+        <a href="#" @click="clickRouter('service')" class="anchor-mobile">Service</a>
+        <a href="#" @click="clickRouter('testimoni')" class="anchor-mobile">Testimoni</a>
+        <a href="#" @click="clickRouter('about')" class="anchor-mobile">Tentang Kami</a>
+        <a href="#" @click="clickRouter('contact')" class="anchor-mobile">Kontak</a>
       </div>
     </div>
   </div>
